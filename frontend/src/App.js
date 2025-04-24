@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './App.css';
+import './styles/App.css';
 
 const products = [
   { id: 1, name: '56', price: 0.81 },
