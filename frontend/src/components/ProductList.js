@@ -31,7 +31,7 @@ const ProductList = ({ onNext }) => {
       <div className="product-grid">
         {products.map((product, index) => (
           <div key={index} className="product-card">
-            <div className="emoji">🎁</div>
+            <div className="emoji">💎</div>
             <div className="product-name">{product.name}</div>
             <div className="product-price">${product.price.toFixed(2)}</div>
             <button className="add-button" onClick={() => addToCart(product)}>
