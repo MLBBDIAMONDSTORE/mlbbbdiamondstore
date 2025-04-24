@@ -1,15 +1,32 @@
 const express = require('express');
-const path = require('path');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const dotenv = require('dotenv');
+const orderRoutes = require('./routes/order');
+const paymentRoutes = require('./routes/payment');
+
+dotenv.config();
+
 const app = express();
+const PORT = process.env.PORT || 5000;
 
+app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '../frontend')));
 
-app.post('/order', (req, res) => {
-  const { user, item, price } = req.body;
-  console.log(`Yangi buyurtma: ${user?.first_name || 'Foydalanuvchi'} ${item} uchun $${price}`);
-  res.send('Buyurtmangiz qabul qilindi!');
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log('MongoDBga ulandi'))
+.catch((err) => console.error('MongoDB ulanishda xatolik:', err));
+
+app.use('/api/orders', orderRoutes);
+app.use('/api/payment', paymentRoutes);
+
+app.get('/', (req, res) => {
+  res.send('MLBB server ishlayapti');
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Backend server http://localhost:${PORT} da ishga tushdi`));
+app.listen(PORT, () => {
+  console.log(`Server ${PORT}-portda ishlayapti`);
+});
