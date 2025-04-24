@@ -1,12 +1,12 @@
-// frontend/src/components/StatusPage.js
-
 import React from 'react';
+import '../styles/OrderStatus.css';
 
-const StatusPage = () => {
+const StatusPage = ({ orderId }) => {
   return (
-    <div style={{ padding: '20px', color: 'white' }}>
-      <h2>Status Page</h2>
-      <p>Buyurtmangiz holatini shu yerdan ko‘rishingiz mumkin.</p>
+    <div className="status-page">
+      <h2>Order Status</h2>
+      <p>Order ID: <strong>{orderId}</strong></p>
+      <p>Status: Pending (waiting for admin approval)</p>
     </div>
   );
 };
