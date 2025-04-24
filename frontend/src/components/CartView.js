@@ -1,57 +1,63 @@
 import React, { useState } from 'react';
-import '../../styles/cart.css';
+import '../styles/OrderView.css';
 
 const products = [
-  { emoji: '56', desc: 'Po-ta-toes', price: 0.81 },
-  { emoji: '86', desc: 'Hot and ready', price: 1.07 },
-  { emoji: '112', desc: 'Más XP', price: 1.63 },
-  { emoji: '172', desc: 'Rank up', price: 2.12 },
-  { emoji: '257', desc: 'Epic tier', price: 3.07 },
-  { emoji: '706', desc: 'Diamond blast', price: 8.33 },
-  { emoji: '2195', desc: 'Mega top-up', price: 25.23 },
-  { emoji: '2398', desc: 'Special offer', price: 32.53 },
-  { emoji: '3688', desc: 'Big deal', price: 42.09 },
-  { emoji: '5532', desc: 'Monster pack', price: 63.55 },
-  { emoji: '6042', desc: 'Max stack', price: 81.32 },
-  { emoji: '9288', desc: 'Ultimate boost', price: 105.56 },
-  { emoji: 'Weekly Pass', desc: '7 days value', price: 1.32 },
-  { emoji: 'Twilight Pass', desc: 'Mystery box', price: 6.99 }
+  { name: '56', price: 0.81, emoji: '🧱' },
+  { name: '86', price: 1.07, emoji: '⚔️' },
+  { name: '112', price: 1.63, emoji: '🛡️' },
+  { name: '172', price: 2.12, emoji: '🎯' },
+  { name: '257', price: 3.07, emoji: '🔥' },
+  { name: '706', price: 8.33, emoji: '🧨' },
+  { name: '2195', price: 25.23, emoji: '💎' },
+  { name: '2398', price: 32.53, emoji: '🚀' },
+  { name: '3688', price: 42.09, emoji: '☄️' },
+  { name: '5532', price: 63.55, emoji: '⚡' },
+  { name: '6042', price: 81.32, emoji: '🏆' },
+  { name: '9288', price: 105.56, emoji: '👑' },
+  { name: 'Weekly Pass', price: 1.32, emoji: '📆' },
+  { name: 'Twilight Pass', price: 6.99, emoji: '🌙' },
 ];
 
-function CartView({ onNext }) {
-  const [cart, setCart] = useState([]);
+const OrderView = ({ onNext }) => {
+  const [selectedItems, setSelectedItems] = useState([]);
 
-  const addToCart = (product) => {
-    const existing = cart.find(p => p.emoji === product.emoji);
-    if (existing) {
-      existing.qty += 1;
-      setCart([...cart]);
-    } else {
-      setCart([...cart, { ...product, qty: 1 }]);
-    }
+  const toggleItem = (product) => {
+    setSelectedItems(prev => {
+      const exists = prev.find(p => p.name === product.name);
+      if (exists) {
+        return prev.filter(p => p.name !== product.name);
+      } else {
+        return [...prev, product];
+      }
+    });
   };
 
-  const total = cart.reduce((sum, p) => sum + p.qty * p.price, 0).toFixed(2);
-
   return (
-    <div className="cart-container">
+    <div className="order-view">
+      <h2>Choose Your Product</h2>
       <div className="product-grid">
-        {products.map((p, i) => (
-          <div key={i} className="product-card" onClick={() => addToCart(p)}>
-            <div className="product-emoji">{p.emoji}</div>
-            <div className="product-desc">{p.desc}</div>
-            <button className="add-button">ADD</button>
+        {products.map((product, index) => (
+          <div
+            key={index}
+            className={`product-card ${selectedItems.find(p => p.name === product.name) ? 'selected' : ''}`}
+            onClick={() => toggleItem(product)}
+          >
+            <div className="emoji">{product.emoji}</div>
+            <div className="name">{product.name}</div>
+            <div className="price">${product.price.toFixed(2)}</div>
+            <button className="add-btn">
+              {selectedItems.find(p => p.name === product.name) ? 'ADDED' : 'ADD'}
+            </button>
           </div>
         ))}
       </div>
-
-      {cart.length > 0 && (
-        <button className="view-order" onClick={() => onNext(cart)}>
-          VIEW ORDER (${total})
+      {selectedItems.length > 0 && (
+        <button className="view-order-btn" onClick={() => onNext(selectedItems)}>
+          VIEW ORDER
         </button>
       )}
     </div>
   );
-}
+};
 
-export default CartView;
+export default OrderView;
