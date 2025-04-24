@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/OrderView.css';
+import '../styles/OrderForm.css';
 
 const products = [
   { name: '56', price: 0.81, emoji: '🧱' },
