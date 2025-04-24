@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { OrderContext } from '../context/OrderContext';
-import './OrderForm.css';
+import '../styles/OrderForm.css';
 
 const OrderSummary = () => {
   const { orderItems } = useContext(OrderContext);
