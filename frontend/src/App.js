@@ -1,19 +1,29 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import OrderView from './components/OrderView';
-import PaymentPage from './components/PaymentPage';
-import StatusPage from './components/StatusPage';
-import AdminPanel from './components/AdminPanel';
+import React, { useState } from 'react';
+import ProductList from './ProductList';
+import OrderForm from './OrderForm';
+import PaymentPage from './PaymentPage';
 
-const App = () => {
+function App() {
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [currentStep, setCurrentStep] = useState(1);
+
+  const handleNext = (items) => {
+    setSelectedItems(items);
+    setCurrentStep(2);
+  };
+
+  const handleOrderSubmit = (orderInfo) => {
+    console.log('Order info:', orderInfo);
+    setCurrentStep(3);
+  };
+
   return (
-    <Routes>
-      <Route path="/" element={<OrderView />} />
-      <Route path="/pay" element={<PaymentPage />} />
-      <Route path="/status/:orderId" element={<StatusPage />} />
-      <Route path="/admin" element={<AdminPanel />} />
-    </Routes>
+    <div>
+      {currentStep === 1 && <ProductList onNext={handleNext} />}
+      {currentStep === 2 && <OrderForm items={selectedItems} onSubmit={handleOrderSubmit} />}
+      {currentStep === 3 && <PaymentPage order={selectedItems} />}
+    </div>
   );
-};
+}
 
 export default App;
