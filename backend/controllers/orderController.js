@@ -1,68 +1,69 @@
 const Order = require('../models/Order');
 
-// Yangi buyurtma yaratish
+// Buyurtma yaratish
 exports.createOrder = async (req, res) => {
   try {
     const order = new Order(req.body);
     await order.save();
     res.status(201).json(order);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+  } catch (error) {
+    res.status(400).json({ error: 'Order creation failed' });
   }
 };
 
-// Barcha buyurtmalarni olish
+// Buyurtma holatini olish
+exports.getOrderStatus = async (req, res) => {
+  try {
+    const order = await Order.findById(req.params.id);
+    if (!order) return res.status(404).json({ error: 'Order not found' });
+    res.json({ status: order.status });
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
+// To‘lovlarni saqlash
+exports.submitPayment = async (req, res) => {
+  const { orderId, paymentMethod, cardNumber, paymentProof } = req.body;
+  try {
+    const order = await Order.findByIdAndUpdate(orderId, {
+      paymentMethod,
+      cardNumber,
+      paymentProof
+    }, { new: true });
+    res.json(order);
+  } catch (error) {
+    res.status(400).json({ error: 'Payment failed' });
+  }
+};
+
+// Admin buyurtmalarni ko‘rishi
 exports.getAllOrders = async (req, res) => {
-  try {
-    const orders = await Order.find().sort({ createdAt: -1 });
-    res.json(orders);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+  const orders = await Order.find().sort({ createdAt: -1 });
+  res.json(orders);
 };
 
-// Buyurtma holatini yangilash
-exports.updateOrderStatus = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { status } = req.body;
-    const order = await Order.findByIdAndUpdate(id, { status }, { new: true });
-    res.json(order);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+// Admin tasdiqlashi
+exports.approveOrder = async (req, res) => {
+  const order = await Order.findByIdAndUpdate(req.params.id, { status: 'Approved' }, { new: true });
+  res.json(order);
 };
 
-// Buyurtmani bekor qilish
-exports.cancelOrder = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const order = await Order.findByIdAndUpdate(id, { status: 'Rejected' }, { new: true });
-    res.json(order);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+// Admin bekor qilishi
+exports.rejectOrder = async (req, res) => {
+  const order = await Order.findByIdAndUpdate(req.params.id, { status: 'Rejected' }, { new: true });
+  res.json(order);
 };
 
-// Mijoz karta raqamini yuboradi (bekor qilinganda)
-exports.setRefundCard = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const { refundCard } = req.body;
-    const order = await Order.findByIdAndUpdate(id, { refundCard }, { new: true });
-    res.json(order);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+// Mijoz karta raqami yuboradi (refund uchun)
+exports.submitRefundCard = async (req, res) => {
+  const { refundCard } = req.body;
+  const order = await Order.findByIdAndUpdate(req.params.id, { refundCard }, { new: true });
+  res.json(order);
 };
 
-// Admin tomonidan qaytarilgan to‘lovni tasdiqlash
+// Admin refundni tasdiqlaydi
 exports.confirmRefund = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const order = await Order.findByIdAndUpdate(id, { status: 'Refunded' }, { new: true });
-    res.json(order);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+  const order = await Order.findByIdAndUpdate(req.params.id, { status: 'Refunded' }, { new: true });
+  res.json(order);
 };
