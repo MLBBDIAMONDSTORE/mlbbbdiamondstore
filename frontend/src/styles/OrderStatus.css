@@ -1,61 +1,15 @@
-.order-status-page {
-  background-color: #000;
-  color: #fff;
-  min-height: 100vh;
-  padding: 20px;
+.order-status, .status-page {
+  padding: 40px;
   text-align: center;
-  font-family: Arial, sans-serif;
 }
 
-.status-box {
-  padding: 20px;
-  border-radius: 10px;
-  font-size: 18px;
-  margin-top: 20px;
-  font-weight: bold;
-}
-
-.status-box.pending {
-  background-color: #ffc107;
-  color: #000;
-}
-
-.status-box.approved {
-  background-color: #4caf50;
-}
-
-.status-box.rejected {
-  background-color: #f44336;
-}
-
-.status-box.refunded {
-  background-color: #2196f3;
-}
-
-.refund-form {
-  margin-top: 20px;
-}
-
-.refund-form input {
-  padding: 10px;
-  width: 60%;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  font-size: 16px;
-}
-
-.refund-form button {
-  background-color: #00c853;
+.order-status button {
+  background-color: #00cc66;
   color: #fff;
-  padding: 10px 25px;
-  border: none;
-  border-radius: 8px;
   font-weight: bold;
-  cursor: pointer;
-}
-
-.thank-you-msg {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
   margin-top: 20px;
-  color: #00e676;
-  font-size: 16px;
+  cursor: pointer;
 }
