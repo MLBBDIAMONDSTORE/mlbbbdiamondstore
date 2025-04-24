@@ -1,30 +1,19 @@
-import React, { useState } from 'react';
-import CartView from './components/CartView';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import OrderView from './components/OrderView';
 import PaymentPage from './components/PaymentPage';
-import OrderStatus from './components/OrderStatus';
+import StatusPage from './components/StatusPage';
+import AdminPanel from './components/AdminPanel';
 
-function App() {
-  const [page, setPage] = useState('cart');
-  const [order, setOrder] = useState([]);
-  const [orderInfo, setOrderInfo] = useState(null);
-
-  const goToPayment = (cart) => {
-    setOrder(cart);
-    setPage('payment');
-  };
-
-  const showStatus = (info) => {
-    setOrderInfo(info);
-    setPage('status');
-  };
-
+const App = () => {
   return (
-    <>
-      {page === 'cart' && <CartView onNext={goToPayment} />}
-      {page === 'payment' && <PaymentPage order={order} onStatus={showStatus} />}
-      {page === 'status' && <OrderStatus info={orderInfo} />}
-    </>
+    <Routes>
+      <Route path="/" element={<OrderView />} />
+      <Route path="/pay" element={<PaymentPage />} />
+      <Route path="/status/:orderId" element={<StatusPage />} />
+      <Route path="/admin" element={<AdminPanel />} />
+    </Routes>
   );
-}
+};
 
 export default App;
