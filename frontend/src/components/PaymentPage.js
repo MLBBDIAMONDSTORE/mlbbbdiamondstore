@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { OrderContext } from '../context/OrderContext';
-import './styles/PaymentPage.css';
+import '../styles/PaymentPage.css';
 
 const PaymentPage = () => {
   const { orderItems } = useContext(OrderContext);
