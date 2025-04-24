@@ -1,27 +1,45 @@
 import React, { useState } from 'react';
-import ProductList from './ProductList';
-import OrderForm from './OrderForm';
-import PaymentPage from './PaymentPage';
+import ProductList from './components/ProductList';
+import OrderForm from './components/OrderForm';
+import PaymentPage from './components/PaymentPage';
+import OrderStatus from './components/OrderStatus';
+import StatusPage from './components/StatusPage';
+import AdminPanel from './components/AdminPanel';
+import './styles/App.css';
 
 function App() {
-  const [selectedItems, setSelectedItems] = useState([]);
-  const [currentStep, setCurrentStep] = useState(1);
+  const [step, setStep] = useState(1);
+  const [orderItems, setOrderItems] = useState([]);
+  const [orderInfo, setOrderInfo] = useState({});
+  const [orderId, setOrderId] = useState(null);
 
-  const handleNext = (items) => {
-    setSelectedItems(items);
-    setCurrentStep(2);
+  const goToNext = (items) => {
+    setOrderItems(items);
+    setStep(2);
   };
 
-  const handleOrderSubmit = (orderInfo) => {
-    console.log('Order info:', orderInfo);
-    setCurrentStep(3);
+  const handleFormSubmit = (info) => {
+    setOrderInfo(info);
+    setStep(3);
+  };
+
+  const handlePayment = (id) => {
+    setOrderId(id);
+    setStep(4);
+  };
+
+  const goToStatusPage = () => {
+    setStep(5);
   };
 
   return (
-    <div>
-      {currentStep === 1 && <ProductList onNext={handleNext} />}
-      {currentStep === 2 && <OrderForm items={selectedItems} onSubmit={handleOrderSubmit} />}
-      {currentStep === 3 && <PaymentPage order={selectedItems} />}
+    <div className="App">
+      {step === 1 && <ProductList onNext={goToNext} />}
+      {step === 2 && <OrderForm items={orderItems} onSubmit={handleFormSubmit} />}
+      {step === 3 && <PaymentPage order={orderInfo} onPay={handlePayment} />}
+      {step === 4 && <OrderStatus orderId={orderId} onViewStatus={goToStatusPage} />}
+      {step === 5 && <StatusPage orderId={orderId} />}
+      {step === 999 && <AdminPanel />}
     </div>
   );
 }
