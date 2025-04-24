@@ -1,49 +1,76 @@
-g.cart-container {
-    background: #000;
-    color: white;
-    min-height: 100vh;
-    padding: 20px;
-  }
-  
-  .product-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-  }
-  
-  .product-card {
-    background: #111;
-    padding: 10px;
-    border-radius: 8px;
-    text-align: center;
-    color: white;
-  }
-  
-  .product-emoji {
-    font-size: 32px;
-  }
-  
-  .product-desc {
-    margin: 5px 0;
-  }
-  
-  .add-button {
-    background: yellow;
-    color: black;
-    border: none;
-    padding: 5px 10px;
-    font-weight: bold;
-    border-radius: 5px;
-  }
-  
-  .view-order {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background: green;
-    color: white;
-    padding: 15px;
-    font-size: 18px;
-    border: none;
-  }
-  
+.order-view {
+  background-color: #000;
+  color: #fff;
+  min-height: 100vh;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+}
+
+.order-view h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 100px;
+}
+
+.product-card {
+  background-color: #111;
+  padding: 15px;
+  border-radius: 12px;
+  transition: transform 0.2s;
+  border: 2px solid transparent;
+}
+
+.product-card.selected {
+  border-color: yellow;
+}
+
+.product-card:hover {
+  transform: scale(1.03);
+}
+
+.emoji {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.price {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.add-btn {
+  background-color: yellow;
+  border: none;
+  padding: 8px 12px;
+  font-weight: bold;
+  color: #000;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.view-order-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #00c853;
+  color: #fff;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
