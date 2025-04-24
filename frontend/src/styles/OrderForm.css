@@ -1,76 +1,24 @@
-.order-view {
-  background-color: #000;
-  color: #fff;
-  min-height: 100vh;
-  padding: 20px;
-  font-family: 'Arial', sans-serif;
+.order-form {
+  padding: 30px;
   text-align: center;
 }
 
-.order-view h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
-}
-
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  margin-bottom: 100px;
-}
-
-.product-card {
+.order-form input {
+  padding: 10px;
+  margin: 10px;
+  width: 80%;
+  border: 1px solid #333;
+  border-radius: 6px;
   background-color: #111;
-  padding: 15px;
-  border-radius: 12px;
-  transition: transform 0.2s;
-  border: 2px solid transparent;
-}
-
-.product-card.selected {
-  border-color: yellow;
-}
-
-.product-card:hover {
-  transform: scale(1.03);
-}
-
-.emoji {
-  font-size: 48px;
-  margin-bottom: 10px;
-}
-
-.name {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.price {
-  margin: 8px 0;
-  font-size: 16px;
-}
-
-.add-btn {
-  background-color: yellow;
-  border: none;
-  padding: 8px 12px;
-  font-weight: bold;
-  color: #000;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.view-order-btn {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #00c853;
   color: #fff;
-  border: none;
-  padding: 14px 30px;
-  border-radius: 50px;
-  font-size: 18px;
+}
+
+.order-form button {
+  background-color: #00cc66;
+  color: #fff;
   font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
 }
