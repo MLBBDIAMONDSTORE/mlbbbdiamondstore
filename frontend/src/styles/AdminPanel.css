@@ -1,43 +1,8 @@
 .admin-panel {
-  background-color: #000;
-  color: #fff;
   padding: 30px;
-  min-height: 100vh;
-  font-family: sans-serif;
+  text-align: center;
 }
 
-.order-card {
-  background-color: #1e1e1e;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #333;
-}
-
-.order-card p {
-  margin: 5px 0;
-}
-
-.order-card button {
-  margin: 10px 5px 0 0;
-  padding: 8px 18px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.approve {
-  background-color: #4caf50;
-  color: #fff;
-}
-
-.reject {
-  background-color: #f44336;
-  color: #fff;
-}
-
-.refund {
-  background-color: #2196f3;
-  color: #fff;
+.admin-panel h2 {
+  color: #ffd700;
 }
