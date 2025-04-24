@@ -1,21 +1,20 @@
 const mongoose = require('mongoose');
 
-const OrderSchema = new mongoose.Schema({
-  product: String,
-  price: Number,
-  gameId: String,
-  zoneId: String,
-  nickname: String,
-  cardType: String,        // Humo yoki Uzcard
-  cardNumber: String,
-  transitCard: Boolean,    // True - tranzit, False - oddiy
-  status: {
-    type: String,
-    enum: ['Pending', 'Approved', 'Rejected', 'Refunded'],
-    default: 'Pending'
+const orderSchema = new mongoose.Schema(
+  {
+    product: String,
+    price: Number,
+    gameId: String,
+    zone: String,
+    paymentProof: String,
+    status: {
+      type: String,
+      enum: ['Pending', 'Approved', 'Rejected', 'Refunded'],
+      default: 'Pending',
+    },
+    refundCard: String,
   },
-  receipt: String,          // To‘lov cheki
-  refundCard: String        // Pulni qaytarish uchun karta raqami
-}, { timestamps: true });
+  { timestamps: true }
+);
 
-module.exports = mongoose.model('Order', OrderSchema);
+module.exports = mongoose.model('Order', orderSchema);
