@@ -1,42 +1,57 @@
-// src/components/CartView.js
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import './style.css';
+import React, { useState } from 'react';
+import '../../styles/cart.css';
 
-const mockCart = [
-  { emoji: "🍟", name: "Fries", desc: "Po-ta-toes", qty: 2, price: 2.98 },
-  { emoji: "🌭", name: "Hotdog", desc: "0% dog, 100% hot", qty: 1, price: 3.49 },
-  { emoji: "🌮", name: "Taco", desc: "Mucho más", qty: 3, price: 11.97 },
-  { emoji: "🍕", name: "Pizza", desc: "That's amore", qty: 3, price: 23.97 },
-  { emoji: "🍩", name: "Donut", desc: "Hole included", qty: 1, price: 1.49 },
-  { emoji: "🍿", name: "Popcorn", desc: "Lights, camera, corn", qty: 1, price: 1.99 },
-  { emoji: "🍦", name: "Icecream", desc: "Cone of shame", qty: 1, price: 5.99 },
-  { emoji: "🍪", name: "Cookie", desc: "Milk’s favorite", qty: 6, price: 23.94 },
-  { emoji: "🍮", name: "Flan", desc: "Flan-tastic", qty: 2, price: 15.98 }
+const products = [
+  { emoji: '56', desc: 'Po-ta-toes', price: 0.81 },
+  { emoji: '86', desc: 'Hot and ready', price: 1.07 },
+  { emoji: '112', desc: 'Más XP', price: 1.63 },
+  { emoji: '172', desc: 'Rank up', price: 2.12 },
+  { emoji: '257', desc: 'Epic tier', price: 3.07 },
+  { emoji: '706', desc: 'Diamond blast', price: 8.33 },
+  { emoji: '2195', desc: 'Mega top-up', price: 25.23 },
+  { emoji: '2398', desc: 'Special offer', price: 32.53 },
+  { emoji: '3688', desc: 'Big deal', price: 42.09 },
+  { emoji: '5532', desc: 'Monster pack', price: 63.55 },
+  { emoji: '6042', desc: 'Max stack', price: 81.32 },
+  { emoji: '9288', desc: 'Ultimate boost', price: 105.56 },
+  { emoji: 'Weekly Pass', desc: '7 days value', price: 1.32 },
+  { emoji: 'Twilight Pass', desc: 'Mystery box', price: 6.99 }
 ];
 
-const CartView = () => {
-  const navigate = useNavigate();
-  const total = mockCart.reduce((acc, item) => acc + item.price, 0).toFixed(2);
+function CartView({ onNext }) {
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (product) => {
+    const existing = cart.find(p => p.emoji === product.emoji);
+    if (existing) {
+      existing.qty += 1;
+      setCart([...cart]);
+    } else {
+      setCart([...cart, { ...product, qty: 1 }]);
+    }
+  };
+
+  const total = cart.reduce((sum, p) => sum + p.qty * p.price, 0).toFixed(2);
 
   return (
-    <div className="container">
-      <h2>YOUR ORDER</h2>
-      {mockCart.map((item, index) => (
-        <div className="item" key={index}>
-          <span className="emoji">{item.emoji}</span>
-          <div className="info">
-            <strong>{item.name} <span className="qty">{item.qty}x</span></strong>
-            <p>{item.desc}</p>
+    <div className="cart-container">
+      <div className="product-grid">
+        {products.map((p, i) => (
+          <div key={i} className="product-card" onClick={() => addToCart(p)}>
+            <div className="product-emoji">{p.emoji}</div>
+            <div className="product-desc">{p.desc}</div>
+            <button className="add-button">ADD</button>
           </div>
-          <span className="price">${item.price.toFixed(2)}</span>
-        </div>
-      ))}
-      <button className="pay-btn" onClick={() => navigate('/payment')}>
-        PAY ${total}
-      </button>
+        ))}
+      </div>
+
+      {cart.length > 0 && (
+        <button className="view-order" onClick={() => onNext(cart)}>
+          VIEW ORDER (${total})
+        </button>
+      )}
     </div>
   );
-};
+}
 
 export default CartView;

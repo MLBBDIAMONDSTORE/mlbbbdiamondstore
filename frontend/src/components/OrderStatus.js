@@ -1,15 +1,18 @@
-// src/components/OrderStatus.js
 import React from 'react';
-import './style.css';
+import '../../styles/status.css';
 
-const OrderStatus = () => {
+function OrderStatus({ info }) {
   return (
-    <div className="container">
+    <div className="status-container">
       <h2>Order Status</h2>
-      <p className="pending">Your order is pending confirmation by admin.</p>
-      {/* Admin tomonidan tasdiqlanganda yoki rad etilganda bu yer yangilanadi */}
+      <p><strong>Nickname:</strong> {info.nickname}</p>
+      <p><strong>ID:</strong> {info.id}</p>
+      <p><strong>Zone:</strong> {info.zone}</p>
+      <p><strong>Card:</strong> {info.cardType.toUpperCase()}</p>
+      <p><strong>Total:</strong> ${info.total}</p>
+      <p><strong>Status:</strong> Pending Approval</p>
     </div>
   );
-};
+}
 
 export default OrderStatus;

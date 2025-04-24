@@ -1,0 +1,12 @@
+.status-container {
+    background: #000;
+    color: white;
+    padding: 20px;
+    min-height: 100vh;
+  }
+  
+  .status-container p {
+    margin: 10px 0;
+    font-size: 18px;
+  }
+  

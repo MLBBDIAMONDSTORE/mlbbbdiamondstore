@@ -1,41 +1,52 @@
-// src/components/PaymentPage.js
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './style.css';
+import '../../styles/payment.css';
 
-const PaymentPage = () => {
-  const navigate = useNavigate();
-  const [gameID, setGameID] = useState('');
+function PaymentPage({ order, onStatus }) {
+  const [id, setId] = useState('');
   const [zone, setZone] = useState('');
   const [nickname, setNickname] = useState('');
+  const [cardType, setCardType] = useState('');
   const [cardNumber, setCardNumber] = useState('');
-  const [payType, setPayType] = useState('uzcard');
 
-  const handleCheck = () => {
-    // Simulyatsiya
-    setNickname('MLBB_Gamer_123');
+  const total = order.reduce((sum, p) => sum + p.qty * p.price, 0).toFixed(2);
+
+  const checkNickname = () => {
+    // Fake nickname for now
+    setNickname('MLBB_Player');
   };
 
-  const handlePay = () => {
-    // To‘lovni amalga oshirish va buyurtmani jo‘natish logikasi
-    navigate('/status');
+  const submitOrder = () => {
+    const info = {
+      id,
+      zone,
+      nickname,
+      cardType,
+      cardNumber,
+      total,
+      products: order
+    };
+    onStatus(info);
   };
 
   return (
-    <div className="container">
-      <h2>Payment Info</h2>
-      <input placeholder="MLBB ID" value={gameID} onChange={(e) => setGameID(e.target.value)} />
-      <input placeholder="Zone" value={zone} onChange={(e) => setZone(e.target.value)} />
-      <button onClick={handleCheck}>CHECK</button>
+    <div className="payment-container">
+      <h2>Enter MLBB Info</h2>
+      <input placeholder="Game ID" value={id} onChange={e => setId(e.target.value)} />
+      <input placeholder="Zone" value={zone} onChange={e => setZone(e.target.value)} />
+      <button className="check-btn" onClick={checkNickname}>CHECK</button>
       {nickname && <p className="nickname">Nickname: {nickname}</p>}
-      <select value={payType} onChange={(e) => setPayType(e.target.value)}>
-        <option value="uzcard">UzCard</option>
+
+      <h2>Select Payment</h2>
+      <select onChange={(e) => setCardType(e.target.value)} defaultValue="">
+        <option value="" disabled>Select Card</option>
         <option value="humo">Humo</option>
+        <option value="uzcard">Uzcard</option>
       </select>
-      <input placeholder="Card number" value={cardNumber} onChange={(e) => setCardNumber(e.target.value)} />
-      <button className="pay-btn" onClick={handlePay}>CONFIRM PAYMENT</button>
+      <input placeholder="Card Number" value={cardNumber} onChange={e => setCardNumber(e.target.value)} />
+
+      <button className="confirm-pay" onClick={submitOrder}>CONFIRM & PAY ${total}</button>
     </div>
   );
-};
+}
 
 export default PaymentPage;
