@@ -1,7 +1,10 @@
 .admin-panel {
+  max-width: 600px;
+  margin: 50px auto;
+  background-color: #1f1f1f;
   padding: 30px;
+  border-radius: 12px;
+  border: 2px solid #00ffe5;
   text-align: center;
-  background: #1a1a1a;
-  border-radius: 15px;
-  color: #ffd700;
+  color: white;
 }
