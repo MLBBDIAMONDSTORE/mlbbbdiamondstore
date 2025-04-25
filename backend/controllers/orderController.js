@@ -2,20 +2,28 @@ const Order = require('../models/Order');
 
 exports.createOrder = async (req, res) => {
   try {
-    const { product, price, userId } = req.body;
-    const order = new Order({ product, price, userId });
-    await order.save();
+    const order = await Order.create(req.body);
     res.status(201).json(order);
-  } catch (error) {
-    res.status(500).json({ message: 'Order creation failed', error: error.message });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };
 
-exports.getOrders = async (req, res) => {
+exports.getOrderById = async (req, res) => {
   try {
-    const orders = await Order.find();
+    const order = await Order.findById(req.params.id);
+    if (!order) return res.status(404).json({ error: 'Order not found' });
+    res.json(order);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+exports.getAllOrders = async (req, res) => {
+  try {
+    const orders = await Order.find().sort({ createdAt: -1 });
     res.json(orders);
-  } catch (error) {
-    res.status(500).json({ message: 'Fetching orders failed', error: error.message });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };
