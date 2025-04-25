@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #1e1e3f, #12122c);
+  color: white;
+}
+
+.home-container, .products-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+input {
+  padding: 10px;
+  margin: 8px 0;
+  width: 250px;
+  border-radius: 6px;
+  border: none;
+}
+
+button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #00c896;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #00a67c;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #12122c;
+}
+
+.site-name {
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.nickname {
+  margin-right: 15px;
+}
