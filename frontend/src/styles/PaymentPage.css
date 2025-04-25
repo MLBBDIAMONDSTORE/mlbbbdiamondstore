@@ -1,15 +1,14 @@
 .payment-page {
-  background-color: #000;
+  background-color: #0d0d0d;
   color: #fff;
-  padding: 20px;
+  padding: 30px;
   min-height: 100vh;
-  font-family: 'Arial', sans-serif;
 }
 
 .payment-page h2 {
   text-align: center;
-  color: #fff;
   margin-bottom: 20px;
+  color: #00ffc8;
 }
 
 .input-group {
@@ -20,12 +19,12 @@
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
+  color: #ccc;
 }
 
 .input-group input {
   width: 100%;
   padding: 10px;
-  font-size: 16px;
   border-radius: 8px;
   border: none;
   background: #222;
@@ -36,20 +35,20 @@
 .pay-button {
   width: 100%;
   padding: 12px;
-  margin-top: 10px;
   font-size: 18px;
   font-weight: bold;
-  background-color: green;
-  color: #fff;
+  background-color: #00ffc8;
+  color: #000;
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease;
 }
 
-.nickname-display {
-  margin-top: 10px;
-  font-size: 18px;
-  text-align: center;
+.check-button:hover,
+.pay-button:hover {
+  background-color: #00e6b8;
 }
 
 .payment-types {
