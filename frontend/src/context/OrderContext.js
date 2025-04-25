@@ -1,15 +1,9 @@
-import React, { createContext, useState } from 'react';
+import { createContext, useState } from 'react';
 
 export const OrderContext = createContext();
 
 export const OrderProvider = ({ children }) => {
-  const [order, setOrder] = useState({
-    items: [],
-    gameId: '',
-    userId: '',
-    paymentMethod: '',
-    totalAmount: 0,
-  });
+  const [order, setOrder] = useState(null);
 
   return (
     <OrderContext.Provider value={{ order, setOrder }}>
