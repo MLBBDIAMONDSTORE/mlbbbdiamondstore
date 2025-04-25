@@ -1,18 +1,44 @@
+/* src/components/Product/ProductCard.css */
+
 .product-card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 16px;
+  background: #1e1e2f;
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 1rem;
   text-align: center;
-  cursor: pointer;
+  color: #fff;
   transition: transform 0.2s;
-  width: 150px;
-  margin: 10px;
 }
 
-.product-card:hover {
-  transform: scale(1.05);
+.diamond-emoji {
+  font-size: 2rem;
+  display: block;
+  transition: transform 0.3s ease;
 }
 
-.emoji {
-  font-size: 48px;
+.wiggle {
+  animation: wiggle 0.5s;
+}
+
+@keyframes wiggle {
+  0% { transform: rotate(0); }
+  25% { transform: rotate(-15deg); }
+  50% { transform: rotate(15deg); }
+  75% { transform: rotate(-10deg); }
+  100% { transform: rotate(0); }
+}
+
+.add-button {
+  margin-top: 0.5rem;
+  padding: 0.4rem 1rem;
+  border: none;
+  background: #ff4081;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.scale-down {
+  transform: scale(0.95);
 }
