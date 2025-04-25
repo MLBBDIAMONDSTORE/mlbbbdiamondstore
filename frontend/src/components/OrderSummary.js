@@ -1,25 +1,42 @@
-import React from 'react';
-import '../styles/OrderSummary.css';
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { OrderContext } from '../context/OrderContext';
+import '../styles/OrderForm.css';
 
-const OrderSummary = ({ cart, info, onNext, onBack }) => {
-  const total = cart.reduce((sum, item) => sum + item.price, 0).toFixed(2);
+const OrderSummary = () => {
+  const { orderItems } = useContext(OrderContext);
+  const navigate = useNavigate();
+
+  const totalPrice = orderItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+
+  const handlePay = () => {
+    navigate('/pay');
+  };
 
   return (
     <div className="order-summary">
-      <h2>Order Summary</h2>
-      <p>Name: {info.name}</p>
-      <p>Email: {info.email}</p>
-      <ul>
-        {cart.map((item, index) => (
-          <li key={index}>
-            {item.name} - ${item.price.toFixed(2)}
-          </li>
-        ))}
-      </ul>
-      <p>Total: ${total}</p>
-      <div className="summary-buttons">
-        <button onClick={onBack}>Back</button>
-        <button onClick={onNext}>Proceed to Payment</button>
+      <h2>Buyurtma Tafsilotlari</h2>
+      {orderItems.length === 0 ? (
+        <p>Hech narsa tanlanmagan.</p>
+      ) : (
+        <ul>
+          {orderItems.map((item, index) => (
+            <li key={index}>
+              <span>💎 {item.name}</span> x {item.quantity} — ${(
+                item.price * item.quantity
+              ).toFixed(2)}
+            </li>
+          ))}
+        </ul>
+      )}
+      <div className="summary-footer">
+        <strong>Jami: ${totalPrice.toFixed(2)}</strong>
+        <button className="pay-button" onClick={handlePay}>
+          TO‘LASH
+        </button>
       </div>
     </div>
   );
