@@ -1,29 +1,27 @@
 const Order = require('../models/Order');
+const validateMLBB = require('../utils/validateMLBB');
 
 exports.createOrder = async (req, res) => {
+  const { userId, zoneId, productId, diamonds, price } = req.body;
+
+  const validation = await validateMLBB(userId, zoneId);
+  if (!validation.valid) {
+    return res.status(400).json({ message: validation.message });
+  }
+
   try {
-    const order = await Order.create(req.body);
+    const order = new Order({
+      nickname: validation.nickname,
+      userId,
+      zoneId,
+      productId,
+      diamonds,
+      price,
+    });
+
+    await order.save();
     res.status(201).json(order);
   } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
-
-exports.getOrderById = async (req, res) => {
-  try {
-    const order = await Order.findById(req.params.id);
-    if (!order) return res.status(404).json({ error: 'Order not found' });
-    res.json(order);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
-
-exports.getAllOrders = async (req, res) => {
-  try {
-    const orders = await Order.find().sort({ createdAt: -1 });
-    res.json(orders);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ message: 'Server error' });
   }
 };
