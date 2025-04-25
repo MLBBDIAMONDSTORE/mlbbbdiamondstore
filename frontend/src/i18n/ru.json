@@ -1,10 +1,14 @@
 {
-  "enter_nickname": "Введите никнейм",
-  "confirm": "Подтвердить",
-  "invalid_nickname": "Неверный никнейм!",
-  "order_summary": "Сводка заказа",
-  "place_order": "Оформить заказ",
-  "order_success": "Заказ успешно отправлен!",
-  "no_products": "Нет выбранных товаров",
-  "total": "Итого"
+  "enterMLBB": "Введите MLBB ID и зону",
+  "gameId": "Game ID",
+  "zoneId": "Zone ID",
+  "continue": "Подтвердить",
+  "invalidCredentials": "Неверный ID или зона",
+  "chooseYourDiamonds": "Выберите ваши Diamonds",
+  "viewOrder": "Посмотреть заказ",
+  "yourOrder": "Ваш заказ",
+  "total": "Сумма",
+  "pay": "Оплатить",
+  "cancel": "Отмена",
+  "paymentThanks": "Спасибо за оплату, {{name}}!"
 }
