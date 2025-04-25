@@ -1,7 +1,7 @@
 // src/components/Product/ProductCard.js
 
 import React from 'react';
-import './ProductCard.css';
+import './styles/ProductCard.css';
 
 const ProductCard = ({ product, onAdd }) => {
   const handleAdd = (e) => {
