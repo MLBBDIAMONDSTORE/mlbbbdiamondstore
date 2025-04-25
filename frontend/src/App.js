@@ -1,10 +1,17 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import { OrderProvider } from './context/OrderContext';
 
 function App() {
   return (
-    <div style={{ padding: '2rem', fontSize: '24px' }}>
-      MLBB Diamond Store ishlayapti!
-    </div>
+    <OrderProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </Router>
+    </OrderProvider>
   );
 }
 
