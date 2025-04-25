@@ -1,74 +1,68 @@
 .payment-page {
-  background-color: #0d0d0d;
-  color: #fff;
+  max-width: 420px;
+  margin: 40px auto;
+  background-color: #1a1a1a;
   padding: 30px;
-  min-height: 100vh;
-}
-
-.payment-page h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #00ffc8;
+  border-radius: 12px;
+  border: 2px solid #444;
+  color: #fff;
 }
 
 .input-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  text-align: left;
 }
 
 .input-group label {
   display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #ccc;
+  margin-bottom: 6px;
 }
 
 .input-group input {
   width: 100%;
   padding: 10px;
   border-radius: 8px;
-  border: none;
-  background: #222;
-  color: #fff;
-}
-
-.check-button,
-.pay-button {
-  width: 100%;
-  padding: 12px;
-  font-size: 18px;
-  font-weight: bold;
-  background-color: #00ffc8;
-  color: #000;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: background 0.3s ease;
-}
-
-.check-button:hover,
-.pay-button:hover {
-  background-color: #00e6b8;
+  background-color: #121212;
+  border: 1px solid #00ffe5;
+  color: white;
 }
 
 .payment-types {
   display: flex;
   gap: 10px;
-  margin-top: 10px;
 }
 
 .payment-types button {
   flex: 1;
   padding: 10px;
-  border: none;
   border-radius: 8px;
-  background: #333;
-  color: #fff;
+  background-color: #333;
+  border: 1px solid #00ffe5;
+  color: white;
   font-weight: bold;
   cursor: pointer;
 }
 
 .payment-types button.active {
-  background-color: yellow;
-  color: #000;
+  background-color: #00ffe5;
+  color: black;
+}
+
+.nickname-display {
+  margin: 20px 0;
+  font-size: 18px;
+  color: #0ff;
+  text-align: center;
+}
+
+.check-button, .pay-button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  background-color: #00ffe5;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  margin-top: 10px;
 }
