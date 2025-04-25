@@ -1,27 +1,27 @@
-import React, { useContext, useState } from 'react';
-import { OrderContext } from '../context/OrderContext';
-import NicknameInput from './NicknameInput';
+import React, { useState } from 'react';
+import { useOrder } from '../context/OrderContext';
+import { useTranslation } from 'react-i18next';
 
 const OrderForm = () => {
-  const { selectedProducts } = useContext(OrderContext);
-  const [mlbbId, setMlbbId] = useState('');
-  const [zone, setZone] = useState('');
+  const { products, nickname, clearOrder } = useOrder();
+  const { t } = useTranslation();
+  const [message, setMessage] = useState('');
+
+  const handleOrder = () => {
+    if (products.length === 0) {
+      setMessage(t('no_products'));
+      return;
+    }
+    // TODO: Send order to backend
+    setMessage(t('order_success'));
+    clearOrder();
+  };
 
   return (
     <div className="order-form">
-      <NicknameInput />
-      <input
-        type="text"
-        placeholder="MLBB ID"
-        value={mlbbId}
-        onChange={(e) => setMlbbId(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Zone Code"
-        value={zone}
-        onChange={(e) => setZone(e.target.value)}
-      />
+      <h2>{t('order_summary')}</h2>
+      <button onClick={handleOrder}>{t('place_order')}</button>
+      {message && <div className="order-message">{message}</div>}
     </div>
   );
 };
