@@ -1,29 +1,21 @@
 import React, { createContext, useContext, useState } from 'react';
 
-export const OrderContext = createContext(); // <--- BU EXPORT QO‘SHILDI
+const OrderContext = createContext();
 
 export const OrderProvider = ({ children }) => {
   const [nickname, setNickname] = useState('');
-  const [zone, setZone] = useState('');
-  const [products] = useState([
-    { id: 1, name: '86 Diamonds', price: 15000, emoji: '💎' },
-    { id: 2, name: '172 Diamonds', price: 30000, emoji: '💠' },
-    { id: 3, name: '257 Diamonds', price: 45000, emoji: '🔷' },
-  ]);
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [products, setProducts] = useState([]);
+
+  const addProduct = (product) => {
+    setProducts((prev) => [...prev, product]);
+  };
+
+  const clearOrder = () => {
+    setProducts([]);
+  };
 
   return (
-    <OrderContext.Provider
-      value={{
-        nickname,
-        setNickname,
-        zone,
-        setZone,
-        products,
-        selectedProduct,
-        setSelectedProduct,
-      }}
-    >
+    <OrderContext.Provider value={{ nickname, setNickname, products, addProduct, clearOrder }}>
       {children}
     </OrderContext.Provider>
   );
