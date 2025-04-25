@@ -1,24 +1,9 @@
-<<<<<<< HEAD
-.order-form-container {
-  text-align: center;
-  background-color: #000000;
-  min-height: 100vh;
-  padding: 30px 20px;
-  color: #ffffff;
+.order-form {
+  padding: 20px;
 }
 
-.order-form-container ul {
-  list-style: none;
-  padding: 0;
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-
-.order-form-container li {
-  margin: 10px 0;
-  font-size: 1.2rem;
-  color: #00ffe0;
-}
-
-.back-button {
-  margin-top 
-=======
->>>>>>> 7bb74de (new)
