@@ -1,8 +1,11 @@
 import React from 'react';
-import HomePage from './pages/HomePage';
 
 function App() {
-  return <HomePage />;
+  return (
+    <div style={{ padding: '2rem', fontSize: '24px' }}>
+      MLBB Diamond Store ishlayapti!
+    </div>
+  );
 }
 
 export default App;
