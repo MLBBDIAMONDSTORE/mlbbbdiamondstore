@@ -1,40 +1,37 @@
-import React, { useContext, useState } from 'react';
-import axios from 'axios';
-import { OrderContext } from '../context/OrderContext';
+import React, { useState } from 'react';
+import { useOrder } from '../context/OrderContext';
+import { validateNickname } from '../utils/api';
 import { useTranslation } from 'react-i18next';
 
 const NicknameInput = () => {
-  const { setNickname, setUserInfo } = useContext(OrderContext);
-  const [input, setInput] = useState('');
+  const { setNickname } = useOrder();
+  const [inputValue, setInputValue] = useState('');
   const [error, setError] = useState('');
   const { t } = useTranslation();
 
-  const handleCheck = async () => {
-    try {
-      const res = await axios.get(`https://api.isan.eu.org/nickname/ml?id=${input}`);
-      if (res.data?.username) {
-        setNickname(res.data.username);
-        setUserInfo(res.data);
-        setError('');
-      } else {
-        setError(t('invalid_id'));
-      }
-    } catch {
-      setError(t('invalid_id'));
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const isValid = await validateNickname(inputValue);
+    if (isValid) {
+      setNickname(inputValue);
+      setError('');
+    } else {
+      setError(t('invalid_nickname'));
     }
   };
 
   return (
-    <div className="nickname-input">
+    <form onSubmit={handleSubmit} className="nickname-form">
       <input
         type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder={t('enter_id')}
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        placeholder={t('enter_nickname')}
+        required
       />
-      <button onClick={handleCheck}>{t('check')}</button>
-      {error && <p className="error">{error}</p>}
-    </div>
+      <button type="submit">{t('confirm')}</button>
+      {error && <div className="error">{error}</div>}
+    </form>
   );
 };
 
