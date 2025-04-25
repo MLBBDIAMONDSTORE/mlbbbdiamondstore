@@ -18,17 +18,4 @@
 }
 
 .back-button {
-  margin-top: 20px;
-  background-color: #00ffe0;
-  color: #000;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.back-button:hover {
-  background-color: #00ccff;
-}
+  margin-top 
