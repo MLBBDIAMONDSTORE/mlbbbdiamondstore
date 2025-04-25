@@ -11,11 +11,138 @@ body {
   box-sizing: border-box;
 }
 
-button {
-  cursor: pointer;
-  font-family: 'Orbitron', sans-serif;
+header.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1f2833;
+  padding: 10px 20px;
 }
 
-input {
-  font-family: 'Orbitron', sans-serif;
+.logo {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.site-name {
+  font-size: 1.5rem;
+  color: #66fcf1;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.nickname {
+  font-weight: bold;
+  color: #ffffff;
+  margin-right: 15px;
+}
+
+.language-selector button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.nickname-form input {
+  padding: 8px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.nickname-form button {
+  background: #45a29e;
+  border: none;
+  padding: 8px 12px;
+  color: white;
+  font-weight: bold;
+}
+
+.nickname-form .error {
+  margin-top: 5px;
+  color: red;
+}
+
+.product-list {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.product-card {
+  background: #1f2833;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  width: 180px;
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+}
+
+.product-emoji {
+  font-size: 40px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.product-emoji:active {
+  transform: rotate(20deg);
+}
+
+.product-info h3 {
+  margin: 10px 0 5px;
+}
+
+.product-info p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.add-button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background: #66fcf1;
+  border: none;
+  font-weight: bold;
+  color: black;
+}
+
+.order-summary, .order-form {
+  max-width: 400px;
+  margin: 20px auto;
+  background: #1f2833;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.summary-item {
+  margin-bottom: 5px;
+}
+
+.summary-total {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.order-form button {
+  width: 100%;
+  background: #45a29e;
+  padding: 10px;
+  border: none;
+  font-weight: bold;
+  color: white;
+}
+
+.order-message {
+  margin-top: 10px;
+  color: #66fcf1;
+  text-align: center;
 }
