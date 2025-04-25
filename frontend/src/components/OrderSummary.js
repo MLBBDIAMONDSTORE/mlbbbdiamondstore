@@ -1,24 +1,24 @@
-import React, { useContext } from 'react';
-import { OrderContext } from '../context/OrderContext';
+import React from 'react';
+import { useOrder } from '../context/OrderContext';
+import { useTranslation } from 'react-i18next';
 
 const OrderSummary = () => {
-  const { selectedProducts, nickname } = useContext(OrderContext);
-  const total = selectedProducts.reduce((sum, p) => sum + p.price, 0).toFixed(2);
+  const { products } = useOrder();
+  const { t } = useTranslation();
+
+  const total = products.reduce((sum, product) => sum + product.price, 0);
 
   return (
     <div className="order-summary">
-      <h3>Order Summary</h3>
-      <ul>
-        {selectedProducts.map((item, index) => (
-          <li key={index}>
-            {item.name} - ${item.price}
-          </li>
-        ))}
-      </ul>
-      <div className="total">
-        <strong>Total:</strong> ${total}
+      <h2>{t('order_summary')}</h2>
+      {products.map((product, index) => (
+        <div key={index} className="summary-item">
+          {product.name} - {product.price} UZS
+        </div>
+      ))}
+      <div className="summary-total">
+        {t('total')}: {total} UZS
       </div>
-      {nickname && <button className="pay-btn">PAY</button>}
     </div>
   );
 };
