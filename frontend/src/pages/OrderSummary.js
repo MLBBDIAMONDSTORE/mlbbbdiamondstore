@@ -1,20 +1,26 @@
 import React, { useContext } from 'react';
 import { OrderContext } from '../context/OrderContext';
-import { useNavigate } from 'react-router-dom';
+import '../styles/OrderSummary.css';
 
 const OrderSummary = () => {
   const { order } = useContext(OrderContext);
-  const navigate = useNavigate();
 
-  if (!order) return <p>No order found.</p>;
+  const totalAmount = order.items.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
 
   return (
-    <div>
-      <h2>Order Summary</h2>
-      <p>Order ID: {order._id}</p>
-      <p>Amount: {order.amount} UZS</p>
-      <p>Status: {order.status}</p>
-      <button onClick={() => navigate('/payment')}>Proceed to Payment</button>
+    <div className="order-summary">
+      <h2>Buyurtma Tafsilotlari</h2>
+      <ul>
+        {order.items.map((item) => (
+          <li key={item.id}>
+            {item.emoji} {item.name} x {item.quantity} = {item.price * item.quantity} UZS
+          </li>
+        ))}
+      </ul>
+      <h3>Jami: {totalAmount} UZS</h3>
     </div>
   );
 };
