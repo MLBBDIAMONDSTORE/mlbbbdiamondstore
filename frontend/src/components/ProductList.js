@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import '../styles/App.css';
+import React, { useContext } from 'react';
+import { OrderContext } from '../context/OrderContext';
+import '../styles/OrderForm.css'; // yoki App.css
 
 const products = [
   { name: '56', price: 0.81 },
@@ -18,30 +19,35 @@ const products = [
   { name: 'Twilight Pass', price: 6.99 },
 ];
 
-const ProductList = ({ onNext }) => {
-  const [cart, setCart] = useState([]);
+const ProductList = () => {
+  const { addToOrder, orderItems } = useContext(OrderContext);
 
-  const addToCart = (product) => {
-    setCart([...cart, product]);
+  const handleAdd = (product) => {
+    addToOrder({
+      ...product,
+      emoji: "💎", // agar emoji kerak bo'lsa
+    });
   };
 
   return (
-    <div className="product-list">
+    <div className="order-form">
       <h1>Choose Your Product</h1>
-      <div className="product-grid">
+      <div className="order-form-grid">
         {products.map((product, index) => (
           <div key={index} className="product-card">
             <div className="emoji">💎</div>
-            <div className="product-name">{product.name}</div>
-            <div className="product-price">${product.price.toFixed(2)}</div>
-            <button className="add-button" onClick={() => addToCart(product)}>
-              ADD
-            </button>
+            <p>{product.name} Diamonds</p>
+            <p className="price">${product.price.toFixed(2)}</p>
+            <button onClick={() => handleAdd(product)}>ADD</button>
           </div>
         ))}
       </div>
-      {cart.length > 0 && (
-        <button className="view-order-button" onClick={() => onNext(cart)}>
+
+      {orderItems.length > 0 && (
+        <button
+          className="view-order-button"
+          onClick={() => window.location.href = "/summary"}
+        >
           VIEW ORDER
         </button>
       )}
