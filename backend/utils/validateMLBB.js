@@ -1,16 +1,12 @@
-const axios = require('axios');
+const fetch = require('node-fetch'); // npm install node-fetch@2
 
-const validateMLBB = async (userId, zoneId) => {
+module.exports = async (mlbbId, zoneId) => {
   try {
-    const response = await axios.get(`https://api.isan.eu.org/nickname/ml?id=${userId}&zone=${zoneId}`);
-    if (response.data && response.data.nickname) {
-      return { valid: true, nickname: response.data.nickname };
-    } else {
-      return { valid: false, message: 'Nickname not found' };
-    }
-  } catch (error) {
-    return { valid: false, message: 'Validation error' };
+    const param = encodeURIComponent(`${mlbbId}(${zoneId})`);
+    const res = await fetch(`https://api.isan.eu.org/nickname/ml?id=${param}`);
+    const data = await res.json();
+    return !!data.username;
+  } catch {
+    return false;
   }
 };
-
-module.exports = validateMLBB;
