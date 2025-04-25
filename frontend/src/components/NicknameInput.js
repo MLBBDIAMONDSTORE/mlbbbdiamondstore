@@ -1,28 +1,39 @@
-import { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import axios from 'axios';
+import { OrderContext } from '../context/OrderContext';
+import { useTranslation } from 'react-i18next';
 
-const NicknameInput = ({ onValidate }) => {
-  const [userId, setUserId] = useState('');
-  const [zoneId, setZoneId] = useState('');
+const NicknameInput = () => {
+  const { setNickname, setUserInfo } = useContext(OrderContext);
+  const [input, setInput] = useState('');
+  const [error, setError] = useState('');
+  const { t } = useTranslation();
 
-  const handleValidate = () => {
-    onValidate(userId, zoneId);
+  const handleCheck = async () => {
+    try {
+      const res = await axios.get(`https://api.isan.eu.org/nickname/ml?id=${input}`);
+      if (res.data?.username) {
+        setNickname(res.data.username);
+        setUserInfo(res.data);
+        setError('');
+      } else {
+        setError(t('invalid_id'));
+      }
+    } catch {
+      setError(t('invalid_id'));
+    }
   };
 
   return (
-    <div>
+    <div className="nickname-input">
       <input
         type="text"
-        placeholder="User ID"
-        value={userId}
-        onChange={(e) => setUserId(e.target.value)}
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        placeholder={t('enter_id')}
       />
-      <input
-        type="text"
-        placeholder="Zone ID"
-        value={zoneId}
-        onChange={(e) => setZoneId(e.target.value)}
-      />
-      <button onClick={handleValidate}>Validate</button>
+      <button onClick={handleCheck}>{t('check')}</button>
+      {error && <p className="error">{error}</p>}
     </div>
   );
 };
