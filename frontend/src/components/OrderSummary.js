@@ -18,9 +18,9 @@ const OrderSummary = () => {
 
   return (
     <div className="order-summary">
-      <h2>Buyurtma Tafsilotlari</h2>
+      <h2>Order Summary</h2>
       {orderItems.length === 0 ? (
-        <p>Hech narsa tanlanmagan.</p>
+        <p>No items selected.</p>
       ) : (
         <ul>
           {orderItems.map((item, index) => (
@@ -33,9 +33,9 @@ const OrderSummary = () => {
         </ul>
       )}
       <div className="summary-footer">
-        <strong>Jami: ${totalPrice.toFixed(2)}</strong>
+        <strong>Total: ${totalPrice.toFixed(2)}</strong>
         <button className="pay-button" onClick={handlePay}>
-          TO‘LASH
+          PAY
         </button>
       </div>
     </div>
