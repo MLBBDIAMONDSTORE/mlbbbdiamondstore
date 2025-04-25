@@ -1,23 +1,19 @@
 .order-status, .status-page {
-  padding: 40px;
+  max-width: 400px;
+  margin: 40px auto;
+  background-color: #1f1f1f;
+  padding: 30px;
+  border: 2px solid #444;
+  border-radius: 12px;
   text-align: center;
-  background-color: #111;
-  border-radius: 15px;
-  color: white;
 }
 
 .order-status button {
-  background-color: #00cc66;
-  color: #fff;
-  font-weight: bold;
-  padding: 10px 20px;
+  background-color: #00ffe5;
+  color: black;
   border: none;
-  border-radius: 6px;
-  margin-top: 20px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.order-status button:hover {
-  background-color: #00a34d;
 }
