@@ -1,4 +1,32 @@
-.payment-page {
-  padding: 20px;
+.payment-page-container {
+  max-width: 600px;
+  margin: 100px auto;
+  padding: 40px;
+  background: #141414;
+  border-radius: 15px;
+  box-shadow: 0 0 20px #ff00e0;
+  color: #fff;
   text-align: center;
+}
+
+.payment-page-container h2 {
+  margin-bottom: 30px;
+  color: #ff00e0;
+}
+
+.payment-page-container button {
+  margin: 10px;
+  padding: 15px 40px;
+  background: #ff00e0;
+  border: none;
+  color: #000;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.payment-page-container button:hover {
+  background: #ff5bd8;
+  transform: scale(1.05);
 }
