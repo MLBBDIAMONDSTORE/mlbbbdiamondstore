@@ -1,18 +1,21 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import OrderPage from './pages/OrderPage';
-import PaymentPage from './pages/PaymentPage';
+import ProductPage from './pages/ProductPage';
+import OrderViewPage from './pages/OrderViewPage';
+import PayPage from './pages/PayPage';
+import { OrderProvider } from './context/OrderContext';
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/order" element={<OrderPage />} />
-        <Route path="/payment" element={<PaymentPage />} />
-      </Routes>
-    </Router>
+    <OrderProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<ProductPage />} />
+          <Route path="/order" element={<OrderViewPage />} />
+          <Route path="/pay" element={<PayPage />} />
+        </Routes>
+      </Router>
+    </OrderProvider>
   );
 };
 
