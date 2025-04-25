@@ -1,17 +1,16 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import { OrderProvider } from './context/OrderContext';
+import { Routes, Route } from 'react-router-dom';
+import ProductList from './components/ProductList';
+import OrderSummary from './components/OrderSummary';
+import PaymentPage from './components/PaymentPage';
 
 function App() {
   return (
-    <OrderProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-        </Routes>
-      </Router>
-    </OrderProvider>
+    <Routes>
+      <Route path="/"         element={<ProductList />}   />
+      <Route path="/order"    element={<OrderSummary />} />
+      <Route path="/payment"  element={<PaymentPage />}  />
+    </Routes>
   );
 }
 
