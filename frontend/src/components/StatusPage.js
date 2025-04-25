@@ -11,4 +11,4 @@ const StatusPage = ({ orderId }) => {
   );
 };
 
-export default StatusPage;
+export default StatusPage; 
