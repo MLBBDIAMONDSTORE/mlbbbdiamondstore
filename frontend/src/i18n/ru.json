@@ -1,1 +1,11 @@
-
+{
+  "app_name": "Магазин Алмазов MLBB",
+  "select_language": "Выберите язык",
+  "your_nickname": "Ваш никнейм",
+  "enter_id": "Введите ID",
+  "enter_zone": "Введите код зоны",
+  "choose_product": "Выберите товар",
+  "add": "Добавить",
+  "order_summary": "Сводка заказа",
+  "submit_order": "Отправить заказ"
+}
