@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
-import { OrderContext } from "../context/OrderContext";
-import { useNavigate } from "react-router-dom";
-import "../styles/OrderForm.css";
+import React, { useContext } from 'react';
+import { OrderContext } from '../context/OrderContext';
+import { useNavigate } from 'react-router-dom';
+import '../styles/OrderForm.css';
 
 const OrderForm = () => {
   const { orderItems } = useContext(OrderContext);
   const navigate = useNavigate();
 
   const handleBack = () => {
-    navigate("/");
+    navigate('/');
   };
 
   return (
