@@ -1,10 +1,47 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+.id-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
 }
 
-h2 {
-  text-align: center;
-  margin-top: 20px;
+.id-form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.id-form input {
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.zone-continue {
+  display: flex;
+  gap: 10px;
+}
+
+.zone-continue input {
+  flex: 1;
+}
+
+.zone-continue button {
+  background-color: #00d084;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s ease;
+}
+
+.zone-continue button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.zone-continue button:hover:not(:disabled) {
+  background-color: #00b874;
 }
