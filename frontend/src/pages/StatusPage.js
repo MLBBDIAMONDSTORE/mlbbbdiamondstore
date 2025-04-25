@@ -1,15 +1,11 @@
-import React, { useContext } from 'react';
-import { OrderContext } from '../context/OrderContext';
+import React from 'react';
+import '../styles/StatusPage.css';
 
 const StatusPage = () => {
-  const { order } = useContext(OrderContext);
-
-  if (!order) return <p>No order found.</p>;
-
   return (
-    <div>
-      <h2>Order Status</h2>
-      <p>Your order is currently: {order.status}</p>
+    <div className="status-page">
+      <h2>Buyurtma Holati</h2>
+      <p>Buyurtmangiz muvaffaqiyatli qabul qilindi!</p>
     </div>
   );
 };
