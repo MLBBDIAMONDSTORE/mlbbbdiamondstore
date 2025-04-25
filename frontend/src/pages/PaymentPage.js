@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/PaymentPage.css';
+import '../styles/PaymentPage.css';
 
 const PaymentPage = () => {
   const handlePayment = () => {
