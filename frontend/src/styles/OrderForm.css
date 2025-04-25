@@ -10,18 +10,40 @@
   background-color: #111;
   padding: 20px;
   border-radius: 15px;
-  width: 120px;
+  width: 150px; /* Avval 120px edi, kattalashtirdim */
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .product-card img {
   width: 50px;
   height: 50px;
+  margin: 0 auto;
 }
 
 .product-card p {
   margin: 10px 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.product-card .price {
   font-size: 14px;
+  margin-bottom: 10px;
+  color: #ccc;
+}
+
+.product-card button {
+  background-color: #ffcc00; /* sariq rang */
+  color: black;
+  border: none;
+  padding: 8px 0;
+  font-size: 16px;
+  border-radius: 8px;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
 .quantity-controls {
@@ -32,7 +54,7 @@
 }
 
 .quantity-controls button {
-  background-color: yellow;
+  background-color: #ffcc00;
   color: black;
   border: none;
   padding: 5px 10px;
