@@ -1,10 +1,9 @@
-import axios from 'axios';
-
-export const createOrder = async (orderData) => {
+export const validateNickname = async (nickname) => {
   try {
-    const response = await axios.post('/api/orders', orderData);
-    return response.data;
+    const response = await fetch(`https://api.isan.eu.org/nickname/ml?id=${nickname}`);
+    const data = await response.json();
+    return data.status === true;
   } catch (error) {
-    throw error.response.data;
+    return false;
   }
 };
