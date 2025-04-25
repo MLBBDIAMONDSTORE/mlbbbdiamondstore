@@ -1,27 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useOrder } from '../context/OrderContext';
-import { useTranslation } from 'react-i18next';
+import '../styles/main.css';
 
 const OrderForm = () => {
-  const { products, nickname, clearOrder } = useOrder();
-  const { t } = useTranslation();
-  const [message, setMessage] = useState('');
-
-  const handleOrder = () => {
-    if (products.length === 0) {
-      setMessage(t('no_products'));
-      return;
-    }
-    // TODO: Send order to backend
-    setMessage(t('order_success'));
-    clearOrder();
-  };
+  const { clearCart } = useOrder();
+  const navigate = useNavigate();
 
   return (
     <div className="order-form">
-      <h2>{t('order_summary')}</h2>
-      <button onClick={handleOrder}>{t('place_order')}</button>
-      {message && <div className="order-message">{message}</div>}
+      <button onClick={() => navigate('/pay')}>PAY</button>
+      <button
+        className="cancel"
+        onClick={() => {
+          clearCart();
+          navigate('/');
+        }}
+      >
+        CANCEL
+      </button>
     </div>
   );
 };
