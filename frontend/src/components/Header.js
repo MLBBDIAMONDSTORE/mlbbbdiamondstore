@@ -1,19 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { OrderContext } from '../context/OrderContext';
 import LanguageSelector from './LanguageSelector';
-import logo from '../assets/logo.png';
-import '../styles/main.css';
+import './Header.css'; // agar maxsus style kerak bo‘lsa
 
-const Header = ({ nickname }) => (
-  <header className="header">
-    <div className="logo-name">
-      <img src={logo} alt="Logo" className="logo" />
-      <h1 className="site-name">MLBB Diamond Store</h1>
-    </div>
-    <div className="right-side">
-      {nickname && <span className="nickname">{nickname}</span>}
-      <LanguageSelector />
-    </div>
-  </header>
-);
-
-export default Header;
+export default function Header() {
+  const { user } = useContext(OrderContext);
+  return (
+    <header className="header">
+      <h1>MLBB Diamond Store</h1>
+      <div className="header-right">
+        {user && <span className="nickname">{user.nickname}</span>}
+        <LanguageSelector />
+      </div>
+    </header>
+  );
+}
