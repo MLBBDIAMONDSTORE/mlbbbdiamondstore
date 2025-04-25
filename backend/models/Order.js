@@ -1,20 +1,10 @@
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
-  product: String,
-  price: Number,
-  gameId: String,
-  zone: String,
-  nickname: String,
-  paymentMethod: String,
-  cardNumber: String,
-  paymentProof: String,
-  status: {
-    type: String,
-    enum: ['Pending', 'Approved', 'Rejected', 'Refunded'],
-    default: 'Pending'
-  },
-  refundCard: String
+  product: { type: String, required: true },
+  price: { type: Number, required: true },
+  userId: { type: String, required: true },
+  status: { type: String, default: 'pending' },
 }, { timestamps: true });
 
 module.exports = mongoose.model('Order', orderSchema);
