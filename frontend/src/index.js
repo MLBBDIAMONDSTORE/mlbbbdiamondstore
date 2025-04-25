@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { OrderProvider } from './context/OrderContext';
-import './i18n';
 import './styles/main.css';
+import './i18n';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
