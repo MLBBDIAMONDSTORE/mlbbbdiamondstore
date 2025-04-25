@@ -1,0 +1,14 @@
+.product-card {
+  background-color: #2b2b3c;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  text-align: center;
+}
+
+.product-card:hover {
+  transform: scale(1.03);
+  background-color: #3d3d5a;
+}
