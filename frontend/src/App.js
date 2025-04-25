@@ -1,19 +1,31 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import ProductsPage from './pages/ProductsPage';
-import './i18n';
-import './App.css';
+import { useState } from 'react';
+import { createOrder } from './utils/api';
+import NicknameInput from './components/NicknameInput';
+import ProductList from './components/ProductList';
 
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/products" element={<ProductsPage />} />
-      </Routes>
-    </Router>
-  );
-}
+const App = () => {
+  const [userId, setUserId] = useState('');
+  const [zoneId, setZoneId] = useState('');
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [order, setOrder] = useState(null);
 
-export default App;
+  const handleValidate = (uid, zid) => {
+    setUserId(uid);
+    setZoneId(zid);
+  };
+
+  const handleSelectProduct = (product) => {
+    setSelectedProduct(product);
+  };
+
+  const handleOrder = async () => {
+    try {
+      const orderData = {
+        userId,
+        zoneId,
+        productId: selectedProduct.id,
+        diamonds: selectedProduct.diamonds,
+        price: selectedProduct.price,
+      };
+      const newOrder = await createOrder(orderData);
+      setOrder(new 
