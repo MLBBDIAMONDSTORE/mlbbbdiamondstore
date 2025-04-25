@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './OrderForm.css';
+import '../styles/OrderForm.css';
 
 function OrderForm() {
   const navigate = useNavigate();
