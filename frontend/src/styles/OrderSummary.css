@@ -1,0 +1,8 @@
+.order-summary {
+  padding: 20px;
+}
+
+.order-summary ul {
+  list-style-type: none;
+  padding: 0;
+}
