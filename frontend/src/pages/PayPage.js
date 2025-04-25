@@ -1,26 +1,30 @@
-// src/pages/PayPage.js
-import React from 'react';
-import { useOrder } from '../context/OrderContext';
+import React, { useContext } from 'react';
+import { OrderContext } from '../context/OrderContext';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-const PayPage = () => {
-  const { order, clearOrder } = useOrder();
+export default function PayPage() {
+  const { cart, clearCart, user } = useContext(OrderContext);
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+
+  const total = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
+
+  const handlePay = () => {
+    // real to‘lov integratsiyasi shu yerda
+    clearCart();
+    alert(t('paymentThanks', { name: user.nickname }));
+    navigate('/');
+  };
 
   return (
     <div className="pay-page">
-      <h1>Your Order</h1>
-      <ul>
-        {order.items.map((item, i) => (
-          <li key={i}>
-            {item.name} x{item.quantity} — ${item.price * item.quantity}
-          </li>
-        ))}
-      </ul>
-      <p>Total: ${order.total.toFixed(2)}</p>
-      <button onClick={() => {/* to‘lov funksiyasi */}}>Pay</button>
-      <button onClick={clearOrder}>Cancel</button>
+      <h2>{t('pay')}</h2>
+      <p>
+        {t('total')}: ${total.toFixed(2)}
+      </p>
+      <button onClick={handlePay}>{t('pay')}</button>
+      <button onClick={() => navigate('/order')}>{t('cancel')}</button>
     </div>
   );
-};
-
-// **BU YERDA** `export` top-level bo‘lishi kerak
-export default PayPage;
+}
