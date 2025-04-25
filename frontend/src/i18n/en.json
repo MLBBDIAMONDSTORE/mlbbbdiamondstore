@@ -1,11 +1,10 @@
 {
-  "app_name": "MLBB Diamond Store",
-  "select_language": "Select Language",
-  "your_nickname": "Your Nickname",
-  "enter_id": "Enter ID",
-  "enter_zone": "Enter Zone Code",
-  "choose_product": "Choose Product",
-  "add": "Add",
+  "enter_nickname": "Enter nickname",
+  "confirm": "Confirm",
+  "invalid_nickname": "Invalid nickname!",
   "order_summary": "Order Summary",
-  "submit_order": "Submit Order"
+  "place_order": "Place Order",
+  "order_success": "Order submitted successfully!",
+  "no_products": "No products selected",
+  "total": "Total"
 }
