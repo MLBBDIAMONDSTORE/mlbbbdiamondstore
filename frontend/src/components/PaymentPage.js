@@ -9,24 +9,20 @@ const PaymentPage = () => {
   const [nickname, setNickname] = useState('');
   const [paymentType, setPaymentType] = useState('HUMO');
   const [cardNumber, setCardNumber] = useState('');
-  const [nicknameFetched, setNicknameFetched] = useState(false);
 
   const handleCheck = () => {
     if (gameId && zoneId) {
-      // TEST uchun nickname yaratamiz
       setNickname(`nickname_${gameId}`);
-      setNicknameFetched(true);
     }
   };
 
   const handlePayment = () => {
-    if (!nicknameFetched) {
-      alert("Iltimos avval nickname tekshiring.");
+    if (!nickname) {
+      alert("Please check nickname first!");
       return;
     }
-
     if (!cardNumber) {
-      alert("Karta raqamini kiriting.");
+      alert("Enter card number!");
       return;
     }
 
@@ -39,13 +35,13 @@ const PaymentPage = () => {
       products: orderItems,
     };
 
-    console.log('To‘lov yuborilmoqda:', orderData);
-    // BACKENDga yuborish uchun fetch() yoki axios() yoziladi bu yerda
+    console.log('Sending payment:', orderData);
+    alert("Payment sent! (Check console)");
   };
 
   return (
     <div className="payment-page">
-      <h2>To‘lov sahifasi</h2>
+      <h2>Payment Page</h2>
 
       <div className="input-group">
         <label>Game ID:</label>
@@ -76,25 +72,15 @@ const PaymentPage = () => {
       )}
 
       <div className="input-group">
-        <label>To‘lov turi:</label>
+        <label>Payment Type:</label>
         <div className="payment-types">
-          <button
-            className={paymentType === 'HUMO' ? 'active' : ''}
-            onClick={() => setPaymentType('HUMO')}
-          >
-            HUMO
-          </button>
-          <button
-            className={paymentType === 'UZCARD' ? 'active' : ''}
-            onClick={() => setPaymentType('UZCARD')}
-          >
-            UZCARD
-          </button>
+          <button className={paymentType === 'HUMO' ? 'active' : ''} onClick={() => setPaymentType('HUMO')}>HUMO</button>
+          <button className={paymentType === 'UZCARD' ? 'active' : ''} onClick={() => setPaymentType('UZCARD')}>UZCARD</button>
         </div>
       </div>
 
       <div className="input-group">
-        <label>Karta raqami:</label>
+        <label>Card Number:</label>
         <input
           type="text"
           placeholder="8600 xxxx xxxx xxxx"
