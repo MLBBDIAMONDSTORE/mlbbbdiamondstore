@@ -1,7 +1,5 @@
-import React, { useContext } from 'react';
-import { OrderContext } from '../context/OrderContext';
-import { useNavigate } from 'react-router-dom';
-import '../styles/App.css';
+import React, { useState, useEffect } from 'react';
+import '../styles/ProductList.css';
 
 const products = [
   { name: '56', price: 0.81 },
@@ -20,12 +18,25 @@ const products = [
   { name: 'Twilight Pass', price: 6.99 },
 ];
 
-const ProductList = () => {
-  const { addToOrder, orderItems } = useContext(OrderContext);
-  const navigate = useNavigate();
+const ProductList = ({ onNext }) => {
+  const [cart, setCart] = useState([]);
+  const [animateIndex, setAnimateIndex] = useState(null);
 
-  const handleAdd = (product) => {
-    addToOrder({ ...product, emoji: '💎' });
+  const addToCart = (product) => {
+    setCart([...cart, product]);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAnimateIndex(Math.floor(Math.random() * products.length));
+      setTimeout(() => setAnimateIndex(null), 600);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleEmojiClick = (index) => {
+    setAnimateIndex(index);
+    setTimeout(() => setAnimateIndex(null), 600);
   };
 
   return (
@@ -34,18 +45,23 @@ const ProductList = () => {
       <div className="product-grid">
         {products.map((product, index) => (
           <div key={index} className="product-card">
-            <div className="emoji">💎</div>
+            <div
+              className={`emoji ${animateIndex === index ? 'shake' : ''}`}
+              onClick={() => handleEmojiClick(index)}
+              style={{ cursor: 'pointer' }}
+            >
+              💎
+            </div>
             <div className="product-name">{product.name}</div>
             <div className="product-price">${product.price.toFixed(2)}</div>
-            <button className="add-button" onClick={() => handleAdd(product)}>
+            <button className="add-button" onClick={() => addToCart(product)}>
               ADD
             </button>
           </div>
         ))}
       </div>
-
-      {orderItems.length > 0 && (
-        <button className="view-order-button" onClick={() => navigate('/summary')}>
+      {cart.length > 0 && (
+        <button className="view-order-button" onClick={() => onNext(cart)}>
           VIEW ORDER
         </button>
       )}
