@@ -1,13 +1,18 @@
-import React from 'react';
-import '../styles/main.css';
+import React, { useContext } from 'react';
+import { OrderContext } from '../context/OrderContext';
 
-const ProductCard = ({ product, onAdd }) => (
-  <div className="card">
-    <div className="emoji">{product.emoji}</div>
-    <div className="name">{product.name}</div>
-    <div className="price">${product.price.toFixed(2)}</div>
-    <button onClick={() => onAdd(product)}>ADD</button>
-  </div>
-);
-
-export default ProductCard;
+export default function ProductCard({ product }) {
+  const { addItem } = useContext(OrderContext);
+  return (
+    <div className="product-card">
+      <div className="icon">💎</div>
+      <div className="info">
+        <strong>{product.name}</strong>
+        <span>${product.price.toFixed(2)}</span>
+      </div>
+      <button onClick={() => addItem(product)}>
+        ADD
+      </button>
+    </div>
+  );
+}
