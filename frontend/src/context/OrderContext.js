@@ -8,4 +8,6 @@ export const OrderProvider = ({ children }) => {
   return (
     <OrderContext.Provider value={{ order, setOrder }}>
       {children}
-    </ 
+    </OrderContext.Provider>
+  );
+};
