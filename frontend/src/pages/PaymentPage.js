@@ -1,12 +1,16 @@
 import React from 'react';
-import '../styles/PaymentPage.css';
+import './styles/PaymentPage.css';
 
 const PaymentPage = () => {
+  const handlePayment = () => {
+    alert('Payment processed!');
+  };
+
   return (
-    <div className="payment-page">
-      <h2>To'lov Sahifasi</h2>
-      <p>Iltimos, to'lov ma'lumotlaringizni kiriting.</p>
-      {/* To'lov formasi bu yerda bo'ladi */}
+    <div className="payment-page-container">
+      <h2>Choose Payment Method</h2>
+      <button onClick={handlePayment}>Pay with Card</button>
+      <button onClick={handlePayment}>Pay with PayPal</button>
     </div>
   );
 };
