@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { OrderContext } from '../context/OrderContext';
-import '../styles/OrderForm.css'; // yoki App.css
+import { useNavigate } from 'react-router-dom';
+import '../styles/App.css';
 
 const products = [
   { name: '56', price: 0.81 },
@@ -21,33 +22,30 @@ const products = [
 
 const ProductList = () => {
   const { addToOrder, orderItems } = useContext(OrderContext);
+  const navigate = useNavigate();
 
   const handleAdd = (product) => {
-    addToOrder({
-      ...product,
-      emoji: "💎", // agar emoji kerak bo'lsa
-    });
+    addToOrder({ ...product, emoji: '💎' });
   };
 
   return (
-    <div className="order-form">
+    <div className="product-list">
       <h1>Choose Your Product</h1>
-      <div className="order-form-grid">
+      <div className="product-grid">
         {products.map((product, index) => (
           <div key={index} className="product-card">
             <div className="emoji">💎</div>
-            <p>{product.name} Diamonds</p>
-            <p className="price">${product.price.toFixed(2)}</p>
-            <button onClick={() => handleAdd(product)}>ADD</button>
+            <div className="product-name">{product.name}</div>
+            <div className="product-price">${product.price.toFixed(2)}</div>
+            <button className="add-button" onClick={() => handleAdd(product)}>
+              ADD
+            </button>
           </div>
         ))}
       </div>
 
       {orderItems.length > 0 && (
-        <button
-          className="view-order-button"
-          onClick={() => window.location.href = "/summary"}
-        >
+        <button className="view-order-button" onClick={() => navigate('/summary')}>
           VIEW ORDER
         </button>
       )}
