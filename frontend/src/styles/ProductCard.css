@@ -8,35 +8,55 @@
   text-align: center;
   color: #fff;
   transition: transform 0.2s;
+  box-shadow: 0 0 10px #00000066;
+  position: relative;
+  overflow: hidden;
 }
 
 .diamond-emoji {
-  font-size: 2rem;
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
   display: block;
   transition: transform 0.3s ease;
 }
 
 .wiggle {
-  animation: wiggle 0.5s;
+  animation: wiggle 0.5s ease;
 }
 
 @keyframes wiggle {
   0% { transform: rotate(0); }
-  25% { transform: rotate(-15deg); }
-  50% { transform: rotate(15deg); }
-  75% { transform: rotate(-10deg); }
+  20% { transform: rotate(-15deg); }
+  40% { transform: rotate(15deg); }
+  60% { transform: rotate(-10deg); }
+  80% { transform: rotate(10deg); }
   100% { transform: rotate(0); }
 }
 
+.product-info h3 {
+  font-size: 1rem;
+  margin: 0.2rem 0;
+}
+
+.product-info p {
+  font-size: 0.9rem;
+  margin: 0.2rem 0 0.5rem;
+}
+
 .add-button {
-  margin-top: 0.5rem;
-  padding: 0.4rem 1rem;
+  padding: 0.4rem 1.2rem;
+  background-color: #ff4081;
   border: none;
-  background: #ff4081;
-  color: white;
+  border-radius: 6px;
+  color: #fff;
   font-weight: bold;
   cursor: pointer;
   transition: transform 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.add-button:hover {
+  background-color: #e73370;
 }
 
 .scale-down {
