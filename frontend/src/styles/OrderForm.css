@@ -1,42 +1,34 @@
-.order-form, .order-summary {
-  max-width: 400px;
-  margin: 50px auto;
-  background-color: #1a1a1a;
-  padding: 30px;
-  border-radius: 12px;
-  border: 2px solid #444;
+.order-form-container {
   text-align: center;
+  background-color: #000000;
+  min-height: 100vh;
+  padding: 30px 20px;
+  color: #ffffff;
 }
 
-.order-form input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  border: 1px solid #00ffe5;
-  background-color: #121212;
-  color: white;
-}
-
-.order-form button, .summary-footer button {
-  background-color: #00ffe5;
-  border: none;
-  color: black;
-  padding: 10px 16px;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.order-summary ul {
+.order-form-container ul {
   list-style: none;
   padding: 0;
 }
 
-.order-summary li {
-  margin-bottom: 10px;
+.order-form-container li {
+  margin: 10px 0;
+  font-size: 1.2rem;
+  color: #00ffe0;
 }
 
-.summary-footer {
+.back-button {
   margin-top: 20px;
+  background-color: #00ffe0;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.back-button:hover {
+  background-color: #00ccff;
 }
