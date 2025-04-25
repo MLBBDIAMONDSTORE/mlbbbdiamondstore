@@ -1,16 +1,26 @@
 import React from 'react';
 import Header from '../components/Header';
+import NicknameInput from '../components/NicknameInput';
 import ProductList from '../components/ProductList';
-import OrderForm from '../components/OrderForm';
 import OrderSummary from '../components/OrderSummary';
+import OrderForm from '../components/OrderForm';
+import { useOrder } from '../context/OrderContext';
 
 const HomePage = () => {
+  const { nickname } = useOrder();
+
   return (
-    <div className="container">
+    <div className="home-page">
       <Header />
-      <ProductList />
-      <OrderForm />
-      <OrderSummary />
+      {!nickname ? (
+        <NicknameInput />
+      ) : (
+        <>
+          <ProductList />
+          <OrderSummary />
+          <OrderForm />
+        </>
+      )}
     </div>
   );
 };
