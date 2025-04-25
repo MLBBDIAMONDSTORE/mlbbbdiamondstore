@@ -1,10 +1,14 @@
 {
-  "enter_nickname": "Nickname kiriting",
-  "confirm": "Tasdiqlash",
-  "invalid_nickname": "Noto‘g‘ri nickname!",
-  "order_summary": "Buyurtma tafsilotlari",
-  "place_order": "Buyurtmani joylashtirish",
-  "order_success": "Buyurtma muvaffaqiyatli yuborildi!",
-  "no_products": "Mahsulot tanlanmadi",
-  "total": "Jami"
+  "enterMLBB": "MLBB ID va Zoneni kiriting",
+  "gameId": "Game ID",
+  "zoneId": "Zone ID",
+  "continue": "Tasdiqlash",
+  "invalidCredentials": "ID yoki Zone noto‘g‘ri",
+  "chooseYourDiamonds": "O‘zingizga kerakli Accessory ni tanlang",
+  "viewOrder": "Buyurtmalar",
+  "yourOrder": "Sizning buyurtmangiz",
+  "total": "Jami",
+  "pay": "To‘lov",
+  "cancel": "Bekor qilish",
+  "paymentThanks": "To‘lov uchun rahmat, {{name}}!"
 }
