@@ -1,16 +1,19 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import LanguageSelector from './LanguageSelector';
-import { OrderContext } from '../context/OrderContext';
+import { useOrder } from '../context/OrderContext';
 import logo from '../assets/logo.png';
 
 const Header = () => {
-  const { nickname } = useContext(OrderContext);
+  const { nickname } = useOrder();
 
   return (
     <header className="header">
-      <img src={logo} alt="Logo" className="logo" />
-      <div className="header-info">
-        <span className="nickname">{nickname}</span>
+      <div className="header-left">
+        <img src={logo} alt="Logo" className="logo" />
+        <h1 className="site-name">MLBB Diamond Store</h1>
+      </div>
+      <div className="header-right">
+        {nickname && <div className="nickname">{nickname}</div>}
         <LanguageSelector />
       </div>
     </header>
