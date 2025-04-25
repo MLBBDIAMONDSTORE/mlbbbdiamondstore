@@ -1,26 +1,17 @@
 import React, { useContext } from 'react';
 import { OrderContext } from '../context/OrderContext';
-import '../styles/OrderSummary.css';
+import './styles/OrderSummary.css';
 
 const OrderSummary = () => {
-  const { order } = useContext(OrderContext);
-
-  const totalAmount = order.items.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
+  const { order, selectedProduct } = useContext(OrderContext);
 
   return (
-    <div className="order-summary">
-      <h2>Buyurtma Tafsilotlari</h2>
-      <ul>
-        {order.items.map((item) => (
-          <li key={item.id}>
-            {item.emoji} {item.name} x {item.quantity} = {item.price * item.quantity} UZS
-          </li>
-        ))}
-      </ul>
-      <h3>Jami: {totalAmount} UZS</h3>
+    <div className="order-summary-container">
+      <h2>Order Summary</h2>
+      <p><strong>Game ID:</strong> {order?.gameId}</p>
+      <p><strong>Zone ID:</strong> {order?.zoneId}</p>
+      <p><strong>Selected Product:</strong> {selectedProduct?.title}</p>
+      <p><strong>Price:</strong> ${selectedProduct?.price}</p>
     </div>
   );
 };
