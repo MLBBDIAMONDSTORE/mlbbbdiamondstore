@@ -12,19 +12,18 @@ function OrderForm() {
     if (gameId.trim() && zoneId.trim()) {
       setLoading(true);
 
-      // Fake server tekshiruvi (Codashop style)
+      // Codashop style tekshiruv
       setTimeout(() => {
-        // Bu yerda haqiqiy tekshiruv qilishga o'xshash kod
         if (gameId === '715242574') {
           setLoading(false);
           navigate('/orderview');
         } else {
           setLoading(false);
-          alert('Kiritilgan Game ID yoki Zone ID xato. Iltimos, tekshirib qayta urinib ko‘ring.');
+          alert('❌ Kiritilgan Game ID yoki Zone ID noto‘g‘ri! Iltimos tekshirib, qayta urinib ko‘ring.');
         }
-      }, 2000); // 2 sekund loading ko‘rsatadi
+      }, 2000); // 2 soniya loading
     } else {
-      alert('Iltimos, Game ID va Zone ID ni to‘ldiring.');
+      alert('Iltimos, Game ID va Zone ID ni to‘liq kiriting.');
     }
   };
 
@@ -36,15 +35,21 @@ function OrderForm() {
         placeholder="Game ID"
         value={gameId}
         onChange={(e) => setGameId(e.target.value)}
+        disabled={loading}
       />
       <input
         type="text"
         placeholder="Zone ID"
         value={zoneId}
         onChange={(e) => setZoneId(e.target.value)}
+        disabled={loading}
       />
       <button onClick={handleContinue} disabled={loading}>
-        {loading ? 'Tekshirilmoqda...' : 'Continue'}
+        {loading ? (
+          <div className="spinner"></div> // Loading animatsiya
+        ) : (
+          'Continue'
+        )}
       </button>
     </div>
   );
