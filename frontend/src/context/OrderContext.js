@@ -3,19 +3,23 @@ import React, { createContext, useContext, useState } from 'react';
 const OrderContext = createContext();
 
 export const OrderProvider = ({ children }) => {
+  const [cart, setCart]         = useState([]);
+  const [mlbbId, setMlbbId]     = useState('');
+  const [zone, setZone]         = useState('');
   const [nickname, setNickname] = useState('');
-  const [products, setProducts] = useState([]);
 
-  const addProduct = (product) => {
-    setProducts((prev) => [...prev, product]);
+  const addToCart = (product) => {
+    setCart(prev => [...prev, product]);
   };
 
-  const clearOrder = () => {
-    setProducts([]);
-  };
+  const clearCart = () => setCart([]);
 
   return (
-    <OrderContext.Provider value={{ nickname, setNickname, products, addProduct, clearOrder }}>
+    <OrderContext.Provider value={{
+      cart, addToCart, clearCart,
+      mlbbId, setMlbbId, zone, setZone,
+      nickname, setNickname
+    }}>
       {children}
     </OrderContext.Provider>
   );
