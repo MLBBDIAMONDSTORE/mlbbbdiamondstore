@@ -4,18 +4,18 @@ import useLocalStorage from '../hooks/useLocalStorage';
 
 const LanguageSelector = () => {
   const { i18n } = useTranslation();
-  const [language, setLanguage] = useLocalStorage('language', 'uz');
+  const [lang, setLang] = useLocalStorage('language', 'uz');
 
-  const changeLanguage = (lng) => {
+  const handleChange = (lng) => {
     i18n.changeLanguage(lng);
-    setLanguage(lng);
+    setLang(lng);
   };
 
   return (
     <div className="language-selector">
-      <button onClick={() => changeLanguage('uz')}>🇺🇿</button>
-      <button onClick={() => changeLanguage('ru')}>🇷🇺</button>
-      <button onClick={() => changeLanguage('en')}>🇺🇸</button>
+      <img src="/flags/uz.svg" alt="UZ" onClick={() => handleChange('uz')} />
+      <img src="/flags/ru.svg" alt="RU" onClick={() => handleChange('ru')} />
+      <img src="/flags/gb.svg" alt="EN" onClick={() => handleChange('en')} />
     </div>
   );
 };
