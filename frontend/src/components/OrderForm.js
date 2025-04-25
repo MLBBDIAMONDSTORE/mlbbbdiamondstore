@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/OrderForm.css'; // to‘g‘ri yo‘l
 
 const OrderForm = ({ items, onSubmit }) => {
