@@ -1,15 +1,36 @@
-header {
-  background-color: #1e1e2f;
-  padding: 20px;
-  text-align: center;
+/* src/styles/Header.css */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #111;
+  border-bottom: 2px solid #333;
 }
 
-header img {
-  width: 60px;
-  height: auto;
+.logo-container {
+  flex-shrink: 0;
 }
 
-header h1 {
-  margin: 10px 0 0;
+.logo {
+  height: 30px;
+  width: auto;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav a {
   color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.nav a:hover {
+  color: #0ff;
 }
