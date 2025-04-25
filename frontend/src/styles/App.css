@@ -1,100 +1,17 @@
 body {
   margin: 0;
-  font-family: sans-serif;
-  background-color: #000;
-  color: white;
-}
-
-.app {
-  padding: 20px;
-  text-align: center;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.card {
-  background-color: #111;
-  padding: 20px;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.emoji {
-  font-size: 40px;
-}
-
-.add {
-  margin-top: 10px;
-  background-color: yellow;
-  color: black;
-  border: none;
-  padding: 8px 20px;
-  border-radius: 8px;
-  font-weight: bold;
-}
-
-.counter {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.counter button {
-  background-color: yellow;
-  border: none;
-  padding: 6px 12px;
-  font-weight: bold;
-  border-radius: 6px;
-  color: black;
-}
-
-.view-order {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: green;
-  color: white;
-  border: none;
-  padding: 15px 30px;
-  font-size: 16px;
-  border-radius: 10px;
-}
-
-.order-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #111;
-  padding: 30px;
-  z-index: 999;
-}
-
-.order-modal h2 {
-  margin-top: 0;
-}
-
-.order-modal ul {
-  list-style: none;
   padding: 0;
+  background-color: #000;
+  font-family: 'Arial', sans-serif;
+  color: white;
 }
 
-.order-modal button {
+h1 {
+  text-align: center;
   margin-top: 20px;
-  padding: 10px 20px;
-  background: yellow;
-  color: black;
-  border: none;
-  font-weight: bold;
-  border-radius: 8px;
+  font-size: 2rem;
+}
+
+button {
+  cursor: pointer;
 }
