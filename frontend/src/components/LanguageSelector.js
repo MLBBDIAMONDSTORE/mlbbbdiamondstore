@@ -6,16 +6,16 @@ const LanguageSelector = () => {
   const { i18n } = useTranslation();
   const [lang, setLang] = useLocalStorage('language', 'uz');
 
-  const handleChange = (lng) => {
+  const changeLng = (lng) => {
     i18n.changeLanguage(lng);
     setLang(lng);
   };
 
   return (
     <div className="language-selector">
-      <img src="/flags/uz.svg" alt="UZ" onClick={() => handleChange('uz')} />
-      <img src="/flags/ru.svg" alt="RU" onClick={() => handleChange('ru')} />
-      <img src="/flags/gb.svg" alt="EN" onClick={() => handleChange('en')} />
+      <button onClick={() => changeLng('uz')}>🇺🇿</button>
+      <button onClick={() => changeLng('ru')}>🇷🇺</button>
+      <button onClick={() => changeLng('en')}>🇺🇸</button>
     </div>
   );
 };
