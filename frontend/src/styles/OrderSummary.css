@@ -1,8 +1,21 @@
-.order-summary {
-  padding: 20px;
+.order-summary-container {
+  max-width: 500px;
+  margin: 100px auto;
+  padding: 30px;
+  background: rgba(20, 20, 20, 0.9);
+  border-radius: 12px;
+  box-shadow: 0 0 15px #00ffd0;
+  color: #ffffff;
+  text-align: left;
 }
 
-.order-summary ul {
-  list-style-type: none;
-  padding: 0;
+.order-summary-container h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #00ffd0;
+}
+
+.order-summary-container p {
+  margin: 10px 0;
+  font-size: 16px;
 }
