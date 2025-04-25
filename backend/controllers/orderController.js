@@ -1,27 +1,20 @@
-const Order = require('../models/Order');
-const validateMLBB = require('../utils/validateMLBB');
+import Order from '../models/Order.js';
 
-exports.createOrder = async (req, res) => {
-  const { userId, zoneId, productId, diamonds, price } = req.body;
-
-  const validation = await validateMLBB(userId, zoneId);
-  if (!validation.valid) {
-    return res.status(400).json({ message: validation.message });
-  }
-
+export const createOrder = async (req, res) => {
   try {
-    const order = new Order({
-      nickname: validation.nickname,
-      userId,
-      zoneId,
-      productId,
-      diamonds,
-      price,
-    });
+    const order = new Order(req.body);
+    const saved = await order.save();
+    res.status(201).json(saved);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to create order' });
+  }
+};
 
-    await order.save();
-    res.status(201).json(order);
-  } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+export const getAllOrders = async (req, res) => {
+  try {
+    const orders = await Order.find();
+    res.json(orders);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch orders' });
   }
 };
