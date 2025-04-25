@@ -1,33 +1,41 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState } from 'react';
+import useLocalStorage from '../hooks/useLocalStorage';
 
-const OrderContext = createContext();
+export const OrderContext = createContext();
 
-export const useOrder = () => useContext(OrderContext);
+export function OrderProvider({ children }) {
+  const [cart, setCart] = useLocalStorage('cart', []);
+  const [user, setUser] = useState(null); // { gameId, zoneId, nickname }
 
-export const OrderProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
-  const [mlbbId, setMlbbId] = useState('');
-  const [zoneId, setZoneId] = useState('');
-  const [nickname, setNickname] = useState('');
+  const addItem = (product) => {
+    setCart((prev) => {
+      const idx = prev.findIndex((p) => p.id === product.id);
+      if (idx > -1) {
+        const next = [...prev];
+        next[idx].quantity += 1;
+        return next;
+      }
+      return [...prev, { ...product, quantity: 1 }];
+    });
+  };
 
-  const addToCart = (product) => setCart((prev) => [...prev, product]);
+  const removeItem = (productId) => {
+    setCart((prev) =>
+      prev
+        .map((p) =>
+          p.id === productId ? { ...p, quantity: p.quantity - 1 } : p
+        )
+        .filter((p) => p.quantity > 0)
+    );
+  };
+
   const clearCart = () => setCart([]);
 
   return (
     <OrderContext.Provider
-      value={{
-        cart,
-        addToCart,
-        clearCart,
-        mlbbId,
-        setMlbbId,
-        zoneId,
-        setZoneId,
-        nickname,
-        setNickname,
-      }}
+      value={{ cart, addItem, removeItem, clearCart, user, setUser }}
     >
       {children}
     </OrderContext.Provider>
   );
-};
+}
