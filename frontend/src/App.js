@@ -1,40 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProductList from './components/ProductList';
 import OrderForm from './components/OrderForm';
-import OrderSummary from './components/OrderSummary';
 import PaymentPage from './components/PaymentPage';
+import AdminPanel from './components/AdminPanel';
+import OrderSummary from './components/OrderSummary';
+import StatusPage from './components/StatusPage';
+import { OrderProvider } from './context/OrderContext';
 import './styles/App.css';
 
 const App = () => {
-  const [step, setStep] = useState(1);
-  const [cart, setCart] = useState([]);
-  const [orderInfo, setOrderInfo] = useState(null);
-
-  const handleNext = (data) => {
-    if (step === 1) {
-      setCart(data);
-      setStep(2);
-    } else if (step === 2) {
-      setOrderInfo(data);
-      setStep(3);
-    } else if (step === 3) {
-      setStep(4);
-    }
-  };
-
-  const handleBack = () => {
-    if (step > 1) {
-      setStep(step - 1);
-    }
-  };
-
   return (
-    <div className="app-container">
-      {step === 1 && <ProductList onNext={handleNext} />}
-      {step === 2 && <OrderForm onNext={handleNext} onBack={handleBack} />}
-      {step === 3 && <OrderSummary cart={cart} info={orderInfo} onNext={handleNext} onBack={handleBack} />}
-      {step === 4 && <PaymentPage cart={cart} info={orderInfo} />}
-    </div>
+    <OrderProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<ProductList />} />
+          <Route path="/order" element={<OrderForm />} />
+          <Route path="/summary" element={<OrderSummary />} />
+          <Route path="/pay" element={<PaymentPage />} />
+          <Route path="/admin" element={<AdminPanel />} />
+          <Route path="/status" element={<StatusPage />} />
+        </Routes>
+      </Router>
+    </OrderProvider>
   );
 };
 
