@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { OrderContext } from '../context/OrderContext';
-import './styles/OrderSummary.css';
+import '../styles/OrderSummary.css';
 
 const OrderSummary = () => {
   const { order, selectedProduct } = useContext(OrderContext);
