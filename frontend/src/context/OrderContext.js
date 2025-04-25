@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 
-const OrderContext = createContext();
+export const OrderContext = createContext(); // <--- BU EXPORT QO‘SHILDI
 
 export const OrderProvider = ({ children }) => {
   const [nickname, setNickname] = useState('');
