@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { OrderContext } from '../context/OrderContext';
-import './styles/OrderForm.css';
+import '../styles/OrderForm.css';
 
 const OrderForm = () => {
   const { setOrder } = useContext(OrderContext);
