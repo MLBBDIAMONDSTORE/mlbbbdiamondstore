@@ -1,8 +1,7 @@
 .admin-panel {
   padding: 30px;
   text-align: center;
-}
-
-.admin-panel h2 {
+  background: #1a1a1a;
+  border-radius: 15px;
   color: #ffd700;
 }
