@@ -1,15 +1,14 @@
 const mongoose = require('mongoose');
 
-const orderSchema = new mongoose.Schema({
-  gameId: String,
-  userId: String,
-  amount: Number,
-  paymentMethod: String,
-  status: {
-    type: String,
-    enum: ['pending', 'paid', 'completed'],
-    default: 'pending',
-  },
-}, { timestamps: true });
+const OrderSchema = new mongoose.Schema({
+  nickname: { type: String, required: true },
+  userId: { type: String, required: true },
+  zoneId: { type: String, required: true },
+  productId: { type: String, required: true },
+  diamonds: { type: Number, required: true },
+  price: { type: Number, required: true },
+  status: { type: String, default: 'pending' },
+  createdAt: { type: Date, default: Date.now },
+});
 
-module.exports = mongoose.model('Order', orderSchema);
+module.exports = mongoose.model('Order', OrderSchema);
