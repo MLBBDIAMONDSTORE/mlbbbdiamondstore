@@ -1,24 +1,53 @@
 .order-form {
-  padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.product-card {
+  background-color: #111;
+  padding: 20px;
+  border-radius: 15px;
+  width: 120px;
   text-align: center;
 }
 
-.order-form input {
-  padding: 10px;
-  margin: 10px;
-  width: 80%;
-  border: 1px solid #333;
-  border-radius: 6px;
-  background-color: #111;
-  color: #fff;
+.product-card img {
+  width: 50px;
+  height: 50px;
 }
 
-.order-form button {
-  background-color: #00cc66;
-  color: #fff;
-  font-weight: bold;
-  padding: 10px 20px;
+.product-card p {
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.quantity-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.quantity-controls button {
+  background-color: yellow;
+  color: black;
   border: none;
-  border-radius: 6px;
-  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 16px;
+  margin: 0 5px;
+  border-radius: 5px;
+}
+
+.view-order-button {
+  margin: 30px auto;
+  display: block;
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
 }
