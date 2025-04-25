@@ -1,11 +1,10 @@
 {
-  "app_name": "MLBB Diamond Do'koni",
-  "select_language": "Tilni tanlang",
-  "your_nickname": "Sizning nickname",
-  "enter_id": "ID kiriting",
-  "enter_zone": "Zone Code kiriting",
-  "choose_product": "Mahsulot tanlang",
-  "add": "Qo'shish",
-  "order_summary": "Buyurtma Tafsilotlari",
-  "submit_order": "Buyurtmani yuborish"
+  "enter_nickname": "Nickname kiriting",
+  "confirm": "Tasdiqlash",
+  "invalid_nickname": "Noto‘g‘ri nickname!",
+  "order_summary": "Buyurtma tafsilotlari",
+  "place_order": "Buyurtmani joylashtirish",
+  "order_success": "Buyurtma muvaffaqiyatli yuborildi!",
+  "no_products": "Mahsulot tanlanmadi",
+  "total": "Jami"
 }
