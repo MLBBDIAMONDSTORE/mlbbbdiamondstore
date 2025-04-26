@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { CartContext } from '../context/CartContext';
+import { CartContext } from '../context/OrderContext';
 import LanguageSelector from './LanguageSelector';
 import '../styles/main.css';
 import logo from '../assets/logo.png';
