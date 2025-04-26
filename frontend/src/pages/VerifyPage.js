@@ -1,32 +1,52 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
 import { validateMLBB } from '../utils/api';
-import { useOrder } from '../context/OrderContext';
+import { OrderContext } from '../context/OrderContext';
+import '../styles/main.css';
 
 export default function VerifyPage() {
+  const { setUser } = useContext(OrderContext);
   const [gameId, setGameId] = useState('');
   const [zoneId, setZoneId] = useState('');
-  const [error, setError] = useState(null);
-  const { setUser } = useOrder();
-  const navigate = useNavigate();
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleVerify = async () => {
+    if (!gameId || !zoneId) {
+      setError('Iltimos, ID va ZONE ni to‘ldiring');
+      return;
+    }
+    setLoading(true);
+    setError('');
     try {
       const nickname = await validateMLBB(gameId, zoneId);
       setUser({ gameId, zoneId, nickname });
-      navigate('/order');
-    } catch {
-      setError('Invalid ID or Zone');
+    } catch (err) {
+      setError('ID yoki ZONE xato!');
     }
+    setLoading(false);
   };
 
   return (
-    <div className="page">
-      <h2>Verify Your MLBB Account</h2>
-      <input placeholder="Game ID" value={gameId} onChange={(e) => setGameId(e.target.value)} />
-      <input placeholder="Zone ID" value={zoneId} onChange={(e) => setZoneId(e.target.value)} />
-      <button onClick={handleVerify}>Verify</button>
-      {error && <div className="error">{error}</div>}
+    <div className="page verify-page">
+      <h1 className="page-title">MLBB ID Tekshiruvi</h1>
+      <div className="verify-form">
+        <input
+          type="text"
+          placeholder="Game ID"
+          value={gameId}
+          onChange={(e) => setGameId(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Zone ID"
+          value={zoneId}
+          onChange={(e) => setZoneId(e.target.value)}
+        />
+        <button onClick={handleVerify} disabled={loading}>
+          {loading ? 'Tekshirilmoqda...' : 'Tekshirish'}
+        </button>
+        {error && <p className="error-text">{error}</p>}
+      </div>
     </div>
   );
 }
