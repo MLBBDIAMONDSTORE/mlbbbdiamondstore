@@ -1,32 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { OrderContext } from '../context/OrderContext';
+import OrderSummary from '../components/OrderSummary';
 import { useNavigate } from 'react-router-dom';
-import { useOrder } from '../context/OrderContext';
+import '../styles/main.css';
 
 export default function OrderViewPage() {
-  const { cart, removeItem, clearCart } = useOrder();
+  const { cart } = useContext(OrderContext);
   const navigate = useNavigate();
-  const total = cart.reduce((sum, p) => sum + p.price * p.quantity, 0);
+
+  const handleConfirm = () => {
+    navigate('/pay');
+  };
 
   return (
-    <div className="page">
-      <h2>Your Order</h2>
-      {cart.length === 0 ? (
-        <p>Cart is empty</p>
-      ) : (
-        <>
-          <ul>
-            {cart.map((item) => (
-              <li key={item.id}>
-                {item.name} x{item.quantity}
-                <button onClick={() => removeItem(item.id)}>-</button>
-              </li>
-            ))}
-          </ul>
-          <div>Total: ${total.toFixed(2)}</div>
-          <button onClick={() => navigate('/pay')}>Pay</button>
-          <button onClick={clearCart}>Clear</button>
-        </>
-      )}
+    <div className="page order-view-page">
+      <h1 className="page-title">Buyurtmani Ko‘rish</h1>
+      <OrderSummary />
+      <button onClick={handleConfirm} className="confirm-button">
+        Buyurtmani Tasdiqlash
+      </button>
     </div>
   );
 }
