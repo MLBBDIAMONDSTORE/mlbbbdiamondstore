@@ -1,4 +1,5 @@
-import React, { createContext, useState } from 'react';
+// src/context/OrderContext.js
+import React, { createContext, useContext, useState } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
 
 export const OrderContext = createContext();
@@ -38,4 +39,14 @@ export function OrderProvider({ children }) {
       {children}
     </OrderContext.Provider>
   );
+}
+
+// ——————————————————————————————————————————
+// Mana shu qismni qo‘shing:
+export function useOrder() {
+  const context = useContext(OrderContext);
+  if (!context) {
+    throw new Error('useOrder must be used within an OrderProvider');
+  }
+  return context;
 }
