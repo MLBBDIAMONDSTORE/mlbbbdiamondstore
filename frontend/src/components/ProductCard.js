@@ -1,29 +1,27 @@
-import React from 'react';
-import '../styles/main.css';
+import React, { useContext } from 'react';
+import { OrderContext } from '../context/OrderContext';
 
-export default function ProductCard({ product, onAdd }) {
-  const handleClick = () => {
-    onAdd(product);
+export default function ProductCard({ product }) {
+  const { addToCart } = useContext(OrderContext);
+
+  const handleAdd = () => {
+    addToCart(product);
     const emoji = document.getElementById(`emoji-${product.id}`);
-    const btn = document.getElementById(`btn-${product.id}`);
-    if (emoji && btn) {
-      emoji.classList.add('wiggle');
-      btn.classList.add('scale');
-      setTimeout(() => {
-        emoji.classList.remove('wiggle');
-        btn.classList.remove('scale');
-      }, 500);
-    }
+    const button = document.getElementById(`btn-${product.id}`);
+    emoji.classList.add('wiggle');
+    button.classList.add('pressed');
+    setTimeout(() => {
+      emoji.classList.remove('wiggle');
+      button.classList.remove('pressed');
+    }, 500);
   };
 
   return (
     <div className="product-card">
-      <span id={`emoji-${product.id}`} className="diamond-emoji">💎</span>
+      <div id={`emoji-${product.id}`} className="emoji">{product.emoji}</div>
       <h4>{product.name}</h4>
-      <p>${product.price.toFixed(2)}</p>
-      <button id={`btn-${product.id}`} className="add-btn" onClick={handleClick}>
-        ADD
-      </button>
+      <p>{product.price} so‘m</p>
+      <button id={`btn-${product.id}`} onClick={handleAdd}>Qo‘shish</button>
     </div>
   );
 }
