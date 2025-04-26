@@ -1,32 +1,47 @@
-// src/pages/OrderViewPage.js
-
 import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { OrderContext } from '../context/OrderContext';
-import OrderSummary from '../components/OrderSummary';
+import '../styles/OrderViewPage.css';
+
+const taglines = {
+  Fries: 'Po-ta-toes',
+  Hotdog: '0% dog, 100% hot',
+  Taco: 'Mucho más',
+  Pizza: 'That’s amore',
+  Donut: 'Hole included',
+  Popcorn: 'Lights, camera, corn',
+  Coke: 'Come of shame',
+  Icecream: 'Cone of shame',
+  Cookie: 'Milk’s favorite',
+  Flan: 'Flan-tastic',
+};
 
 const OrderViewPage = () => {
-  const { cart, user } = useContext(OrderContext);
-  const navigate = useNavigate();
-
-  const handleConfirm = () => {
-    navigate('/pay');
-  };
+  const { cart, getTotalPrice } = useContext(OrderContext);
 
   return (
-    <div className="page">
-      <h2>Buyurtma Tafsilotlari</h2>
-      <div className="order-info">
-        <p><strong>Nickname:</strong> {user.nickname}</p>
-        <p><strong>Game ID:</strong> {user.gameId}</p>
-        <p><strong>Zone ID:</strong> {user.zoneId}</p>
+    <div className="order-page">
+      <h2 className="order-title">YOUR ORDER</h2>
+      <div className="order-list">
+        {cart.map((item) => (
+          <div key={item.id} className="order-item">
+            <div className="order-left">
+              <div className="order-emoji">{item.emoji}</div>
+              <div>
+                <div className="order-name">
+                  {item.name} <span className="order-quantity">{item.quantity}x</span>
+                </div>
+                <div className="order-tagline">{taglines[item.name]}</div>
+              </div>
+            </div>
+            <div className="order-price">
+              ${(item.price * item.quantity).toFixed(2)}
+            </div>
+          </div>
+        ))}
       </div>
-
-      <OrderSummary cart={cart} />
-
-      <button className="confirm-button" onClick={handleConfirm}>
-        Buyurtmani Tasdiqlash
-      </button>
+      <div className="pay-button-wrapper">
+        <button className="pay-button">PAY ${getTotalPrice().toFixed(2)}</button>
+      </div>
     </div>
   );
 };
