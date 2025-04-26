@@ -1,5 +1,4 @@
-// src/context/OrderContext.js
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useState, useContext } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
 
 export const OrderContext = createContext();
@@ -20,33 +19,23 @@ export function OrderProvider({ children }) {
     });
   };
 
-  const removeItem = (productId) => {
+  const removeItem = (id) => {
     setCart((prev) =>
-      prev
-        .map((p) =>
-          p.id === productId ? { ...p, quantity: p.quantity - 1 } : p
-        )
-        .filter((p) => p.quantity > 0)
+      prev.map((p) =>
+        p.id === id ? { ...p, quantity: p.quantity - 1 } : p
+      ).filter((p) => p.quantity > 0)
     );
   };
 
   const clearCart = () => setCart([]);
 
   return (
-    <OrderContext.Provider
-      value={{ cart, addItem, removeItem, clearCart, user, setUser }}
-    >
+    <OrderContext.Provider value={{ cart, addItem, removeItem, clearCart, user, setUser }}>
       {children}
     </OrderContext.Provider>
   );
 }
 
-// ——————————————————————————————————————————
-// Mana shu qismni qo‘shing:
 export function useOrder() {
-  const context = useContext(OrderContext);
-  if (!context) {
-    throw new Error('useOrder must be used within an OrderProvider');
-  }
-  return context;
+  return useContext(OrderContext);
 }
