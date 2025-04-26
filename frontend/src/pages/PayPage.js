@@ -1,19 +1,18 @@
-// src/pages/PayPage.js
-import React, { useContext } from 'react';
-import { OrderContext } from '../context/OrderContext';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useOrder } from '../context/OrderContext';
 
 export default function PayPage() {
-  const { order } = useContext(OrderContext);
-  const navigate = useNavigate();
+  const { cart, user } = useOrder();
+  const total = cart.reduce((sum, p) => sum + p.price * p.quantity, 0);
 
   return (
-    <div className="page-container">
-      <h1>To‘lov</h1>
-      <p>Jami: ${order.total.toFixed(2)}</p>
-      {/* Bu yerda haqiqiy to‘lov logikasini qo‘shasiz */}
-      <button onClick={() => alert('To‘lov amalga oshirildi!')}>To‘lov</button>
-      <button onClick={() => navigate('/')}>Bekor qilish</button>
+    <div className="page">
+      <h2>Payment</h2>
+      <p>MLBB ID: {user.gameId} ({user.zoneId})</p>
+      <p>Nickname: {user.nickname}</p>
+      <p>Diamonds: {cart.length}</p>
+      <p>Total: ${total.toFixed(2)}</p>
+      <button>Proceed to Payment</button>
     </div>
   );
 }
