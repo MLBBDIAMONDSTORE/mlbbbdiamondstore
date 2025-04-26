@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
-import LanguageSelector from './LanguageSelector';
 import { OrderContext } from '../context/OrderContext';
+import LanguageSelector from './LanguageSelector';
+import logo from '../assets/logo.png';
 import '../styles/main.css';
 
 export default function Header() {
@@ -8,9 +9,14 @@ export default function Header() {
 
   return (
     <header className="header">
-      <div className="logo">MLBB Diamond Store</div>
-      <div className="nickname">{nickname}</div>
-      <LanguageSelector />
+      <div className="header-left">
+        <img src={logo} alt="MLBB Logo" className="logo" />
+        <span className="site-title">MLBB Diamond Store</span>
+      </div>
+      <div className="header-right">
+        {nickname && <span className="nickname">{nickname}</span>}
+        <LanguageSelector />
+      </div>
     </header>
   );
 }
