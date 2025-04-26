@@ -1,22 +1,21 @@
-import React, { useContext } from 'react';
-import { CartContext } from './context/OrderContext';
-import '../styles/main.css';
+import React, { createContext, useState } from 'react';
 
-const OrderSummary = () => {
-  const { cartItems } = useContext(CartContext);
+export const CartContext = createContext();
 
-  if (cartItems.length === 0) return null;
+export const OrderProvider = ({ children }) => {
+  const [cartItems, setCartItems] = useState([]);
+
+  const addToCart = (item) => {
+    setCartItems((prevItems) => [...prevItems, item]);
+  };
+
+  const clearCart = () => {
+    setCartItems([]);
+  };
 
   return (
-    <div className="order-summary">
-      <h3>Tanlangan mahsulotlar:</h3>
-      {cartItems.map((item, index) => (
-        <div key={index} className="order-item">
-          {item.emoji} {item.name} - ${item.price.toFixed(2)}
-        </div>
-      ))}
-    </div>
+    <CartContext.Provider value={{ cartItems, addToCart, clearCart }}>
+      {children}
+    </CartContext.Provider>
   );
 };
-
-export default OrderSummary;
