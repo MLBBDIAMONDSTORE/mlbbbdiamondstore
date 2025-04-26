@@ -8,18 +8,20 @@ export function OrderProvider({ children }) {
   const [zoneId, setZoneId] = useState('');
   const [nickname, setNickname] = useState('');
 
+  const addToCart = (product) => {
+    setCart((prev) => [...prev, product]);
+  };
+
+  const clearOrder = () => {
+    setCart([]);
+    setGameId('');
+    setZoneId('');
+    setNickname('');
+  };
+
   return (
     <OrderContext.Provider
-      value={{
-        cart,
-        setCart,
-        gameId,
-        setGameId,
-        zoneId,
-        setZoneId,
-        nickname,
-        setNickname,
-      }}
+      value={{ cart, addToCart, gameId, setGameId, zoneId, setZoneId, nickname, setNickname, clearOrder }}
     >
       {children}
     </OrderContext.Provider>
