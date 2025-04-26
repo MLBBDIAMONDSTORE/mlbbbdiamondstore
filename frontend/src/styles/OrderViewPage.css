@@ -1,0 +1,82 @@
+.order-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #fefefe;
+  padding: 20px;
+}
+
+.order-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.order-list {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  border: 2px solid #ff0000;
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.order-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.order-emoji {
+  font-size: 40px;
+}
+
+.order-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.order-quantity {
+  color: #ff0000;
+  margin-left: 6px;
+}
+
+.order-tagline {
+  font-size: 14px;
+  color: #999999;
+}
+
+.order-price {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.pay-button-wrapper {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pay-button {
+  background: #ff0000;
+  color: white;
+  padding: 14px 28px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.pay-button:hover {
+  background: #cc0000;
+}
