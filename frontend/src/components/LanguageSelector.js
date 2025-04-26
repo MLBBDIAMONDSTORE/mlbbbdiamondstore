@@ -1,24 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import '../styles/main.css';
 
-export default function LanguageSelector() {
-  const [lang, setLang] = React.useState(localStorage.getItem('lang') || 'UZ');
+const LanguageSelector = () => {
+  const [language, setLanguage] = useState(localStorage.getItem('language') || 'UZ');
 
-  const changeLang = (newLang) => {
-    setLang(newLang);
-    localStorage.setItem('lang', newLang);
-  };
+  useEffect(() => {
+    localStorage.setItem('language', language);
+  }, [language]);
 
   return (
-    <div className="lang-selector">
-      {['UZ', 'RU', 'EN'].map((l) => (
-        <button
-          key={l}
-          className={`lang-btn ${lang === l ? 'active' : ''}`}
-          onClick={() => changeLang(l)}
-        >
-          {l}
-        </button>
-      ))}
+    <div className="language-selector">
+      <button
+        className={language === 'UZ' ? 'active' : ''}
+        onClick={() => setLanguage('UZ')}
+      >
+        🇺🇿
+      </button>
+      <button
+        className={language === 'RU' ? 'active' : ''}
+        onClick={() => setLanguage('RU')}
+      >
+        🇷🇺
+      </button>
+      <button
+        className={language === 'EN' ? 'active' : ''}
+        onClick={() => setLanguage('EN')}
+      >
+        🇬🇧
+      </button>
     </div>
   );
-}
+};
+
+export default LanguageSelector;
