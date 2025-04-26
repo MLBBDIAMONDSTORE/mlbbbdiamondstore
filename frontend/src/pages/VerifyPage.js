@@ -1,53 +1,55 @@
 import React, { useContext, useState } from 'react';
-import { OrderContext } from '../context/OrderContext';
-import { useNavigate } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
 import { verifyNickname } from '../utils/api';
+import { useNavigate } from 'react-router-dom';
+import '../styles/main.css';
 
-export default function VerifyPage() {
-  const { setGameId, setZoneId, setNickname } = useContext(OrderContext);
+const VerifyPage = () => {
+  const { setNickname, setLoading } = useContext(CartContext);
   const [id, setId] = useState('');
   const [zone, setZone] = useState('');
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleCheck = async () => {
+  const handleVerify = async () => {
     setLoading(true);
     setError('');
-    try {
-      const name = await verifyNickname(id, zone);
-      setGameId(id);
-      setZoneId(zone);
-      setNickname(name);
+    const data = await verifyNickname(id, zone);
+    setLoading(false);
+
+    if (data && data.nickname) {
+      setNickname(data.nickname);
       navigate('/order');
-    } catch (err) {
-      setError('ID yoki zona noto‘g‘ri.');
-    } finally {
-      setLoading(false);
+    } else {
+      setError('ID yoki Zone ID xato!');
     }
   };
 
   return (
-    <div className="container">
-      <h1>Hisobni tekshirish</h1>
-      <input
-        type="text"
-        placeholder="Game ID"
-        value={id}
-        onChange={(e) => setId(e.target.value)}
-        className="red-border-input"
-      />
-      <input
-        type="text"
-        placeholder="Zone ID"
-        value={zone}
-        onChange={(e) => setZone(e.target.value)}
-        className="red-border-input"
-      />
-      <button className="red-border-btn" onClick={handleCheck} disabled={loading}>
-        {loading ? 'Tekshirilmoqda...' : 'Tekshirish'}
-      </button>
-      {error && <p className="error-text">{error}</p>}
+    <div className="page-container">
+      <h2 className="page-title">ID va Zone ID ni kiriting</h2>
+      <div className="verify-form">
+        <input
+          type="text"
+          placeholder="Game ID"
+          value={id}
+          onChange={(e) => setId(e.target.value)}
+          className="verify-input"
+        />
+        <input
+          type="text"
+          placeholder="Zone ID"
+          value={zone}
+          onChange={(e) => setZone(e.target.value)}
+          className="verify-input"
+        />
+        <button onClick={handleVerify} className="verify-button">
+          Tekshirish
+        </button>
+        {error && <p className="error-message">{error}</p>}
+      </div>
     </div>
   );
-}
+};
+
+export default VerifyPage;
