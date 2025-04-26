@@ -7,17 +7,18 @@ export default function ProductPage() {
   const products = getProducts();
 
   return (
-    <div className="page">
+    <main>
       <h2>Choose your Diamonds</h2>
-      <div className="products">
+      <div className="product-grid">
         {products.map((product) => (
-          <div key={product.id} className="product">
-            <span>{product.name}</span>
-            <span>${product.price.toFixed(2)}</span>
-            <button onClick={() => addItem(product)}>Add 💎</button>
+          <div key={product.id} className="product-card">
+            <h3>{product.name}${product.price}</h3>
+            <button onClick={() => addItem(product)}>
+              Add 💎
+            </button>
           </div>
         ))}
       </div>
-    </div>
+    </main>
   );
 }
