@@ -1,54 +1,32 @@
+// src/App.js
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { OrderProvider, OrderContext } from './context/OrderContext';
-import Header from './components/Header';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import LoginPage from './pages/LoginPage';
-import ProductsPage from './pages/ProductsPage';
+import Header from './components/Header';
+import ProductPage from './pages/ProductPage';
+import VerifyPage from './pages/VerifyPage';
 import OrderViewPage from './pages/OrderViewPage';
 import PayPage from './pages/PayPage';
 
 function App() {
   return (
-    <OrderProvider>
+    <Router>
       <Header />
       <Routes>
-        <Route path="/" element={<LoginPage />} />
-        {/* Agar user tekshiruvi o‘tilmagan bo‘lsa, login sahifasiga qaytar */}
-        <Route
-          path="/products"
-          element={
-            <RequireAuth>
-              <ProductsPage />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="/order"
-          element={
-            <RequireAuth>
-              <OrderViewPage />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="/pay"
-          element={
-            <RequireAuth>
-              <PayPage />
-            </RequireAuth>
-          }
-        />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </OrderProvider>
-  );
-}
+        {/* 1) Boshlang‘ich sahifa — mahsulotlar */}
+        <Route path="/" element={<ProductPage />} />
 
-// router guard
-function RequireAuth({ children }) {
-  const { user } = React.useContext(OrderContext);
-  return user ? children : <Navigate to="/" />;
+        {/* 2) Faqat View Order tugmasiga bosilganda… */}
+        <Route path="/verify" element={<VerifyPage />} />
+
+        {/* 3) Tekshiruv o‘tganidan keyin buyurtma ko‘rinishi */}
+        <Route path="/order" element={<OrderViewPage />} />
+
+        {/* 4) Oxirgi to‘lov sahifasi */}
+        <Route path="/pay" element={<PayPage />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;
