@@ -1,35 +1,44 @@
-import React, { useContext } from 'react';
-import { CartContext } from '../context/OrderContext';
-import { useNavigate } from 'react-router-dom';
-import '../styles/main.css';
+import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const OrderViewPage = () => {
-  const { cartItems, nickname } = useContext(CartContext);
+  const location = useLocation();
   const navigate = useNavigate();
+  const { selectedProduct, nickname, mlbbId, zoneId } = location.state || {};
 
-  const handleContinue = () => {
-    navigate('/pay');
-  };
-
-  if (cartItems.length === 0) {
+  if (!selectedProduct || !nickname || !mlbbId || !zoneId) {
     return (
       <div className="page-container">
-        <h2 className="page-title">Buyurtma topilmadi</h2>
+        <p className="error-message">Order data is missing. Please start again.</p>
       </div>
     );
   }
 
+  const handleConfirm = () => {
+    navigate('/pay', {
+      state: {
+        selectedProduct,
+        nickname,
+        mlbbId,
+        zoneId,
+      },
+    });
+  };
+
   return (
     <div className="page-container">
-      <h2 className="page-title">Buyurtmani Tasdiqlang</h2>
+      <h2 className="page-title">Order Summary</h2>
       <div className="order-summary">
-        <p><strong>Nickname:</strong> {nickname}</p>
-        <p><strong>Mahsulot:</strong> {cartItems[0].name}</p>
-        <p><strong>Narx:</strong> ${cartItems[0].price.toFixed(2)}</p>
+        <div className="order-item"><strong>Nickname:</strong> {nickname}</div>
+        <div className="order-item"><strong>MLBB ID:</strong> {mlbbId}</div>
+        <div className="order-item"><strong>Zone ID:</strong> {zoneId}</div>
+        <div className="order-item"><strong>Product:</strong> {selectedProduct.name}</div>
+        <div className="order-item"><strong>Price:</strong> ${selectedProduct.price}</div>
+        <div className="order-item"><strong>Emoji:</strong> {selectedProduct.emoji}</div>
+        <button className="confirm-button" onClick={handleConfirm}>
+          Confirm Order
+        </button>
       </div>
-      <button onClick={handleContinue} className="confirm-button">
-        To‘lovga o‘tish
-      </button>
     </div>
   );
 };
