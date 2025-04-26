@@ -1,11 +1,11 @@
 import React, { createContext, useContext, useState } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
 
-const OrderContext = createContext();
+export const OrderContext = createContext();
 
 export function OrderProvider({ children }) {
   const [cart, setCart] = useLocalStorage('cart', []);
-  const [user, setUser] = useState(null); // { gameId, zoneId, nickname }
+  const [user, setUser] = useState(null);
 
   const addItem = (product) => {
     setCart((prev) => {
