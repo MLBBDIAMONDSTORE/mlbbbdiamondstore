@@ -1,27 +1,17 @@
-import React, { useContext } from 'react';
-import { OrderContext } from '../context/OrderContext';
+import React from 'react';
+import '../styles/main.css';
 
-export default function ProductCard({ product }) {
-  const { addToCart } = useContext(OrderContext);
-
-  const handleAdd = () => {
-    addToCart(product);
-    const emoji = document.getElementById(`emoji-${product.id}`);
-    const button = document.getElementById(`btn-${product.id}`);
-    emoji.classList.add('wiggle');
-    button.classList.add('pressed');
-    setTimeout(() => {
-      emoji.classList.remove('wiggle');
-      button.classList.remove('pressed');
-    }, 500);
-  };
-
+const ProductCard = ({ product, onAdd }) => {
   return (
     <div className="product-card">
-      <div id={`emoji-${product.id}`} className="emoji">{product.emoji}</div>
-      <h4>{product.name}</h4>
-      <p>{product.price} so‘m</p>
-      <button id={`btn-${product.id}`} onClick={handleAdd}>Qo‘shish</button>
+      <div className="product-emoji">{product.emoji}</div>
+      <h3 className="product-name">{product.name}</h3>
+      <p className="product-price">${product.price.toFixed(2)}</p>
+      <button className="add-button" onClick={onAdd}>
+        Qo'shish
+      </button>
     </div>
   );
-}
+};
+
+export default ProductCard;
