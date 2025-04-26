@@ -1,26 +1,23 @@
-// src/pages/ProductPage.js
-import React, { useContext } from 'react';
-import ProductList from '../components/ProductList';
-import { OrderContext } from '../context/OrderContext';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { getProducts } from '../utils/api';
+import { useOrder } from '../context/OrderContext';
 
 export default function ProductPage() {
-  const { order } = useContext(OrderContext);
-  const navigate = useNavigate();
+  const { addItem } = useOrder();
+  const products = getProducts();
 
   return (
-    <div className="page-container">
-      <h1>Choose Your Diamonds</h1>
-      <ProductList />
-      {/* Faqat buyurtma bo‘lsa ko‘rsatamiz */}
-      {order.items.length > 0 && (
-        <button
-          className="view-order-btn"
-          onClick={() => navigate('/verify')}
-        >
-          VIEW ORDER ({order.items.length})
-        </button>
-      )}
+    <div className="page">
+      <h2>Choose your Diamonds</h2>
+      <div className="products">
+        {products.map((product) => (
+          <div key={product.id} className="product">
+            <span>{product.name}</span>
+            <span>${product.price.toFixed(2)}</span>
+            <button onClick={() => addItem(product)}>Add 💎</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
