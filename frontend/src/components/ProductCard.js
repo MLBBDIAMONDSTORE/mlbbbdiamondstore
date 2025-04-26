@@ -1,14 +1,30 @@
-import React from 'react';
-import '../styles/main.css';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const ProductCard = ({ product, onAdd }) => {
+const ProductCard = ({ product }) => {
+  const [isAnimating, setIsAnimating] = useState(false);
+  const navigate = useNavigate();
+
+  const handleAdd = () => {
+    setIsAnimating(true);
+
+    setTimeout(() => {
+      setIsAnimating(false);
+      navigate('/order', { state: { product } });
+    }, 500); // animatsiya tugashi uchun vaqt
+  };
+
   return (
     <div className="product-card">
-      <div className="product-emoji">{product.emoji}</div>
-      <h3 className="product-name">{product.name}</h3>
-      <p className="product-price">${product.price.toFixed(2)}</p>
-      <button className="add-button" onClick={onAdd}>
-        Qo'shish
+      <div className={`emoji ${isAnimating ? 'wiggle' : ''}`}>{product.emoji}</div>
+      <h3>{product.name}</h3>
+      <p>${product.price}</p>
+      <button
+        className={`add-btn ${isAnimating ? 'scale' : ''}`}
+        onClick={handleAdd}
+        disabled={isAnimating}
+      >
+        ADD
       </button>
     </div>
   );
