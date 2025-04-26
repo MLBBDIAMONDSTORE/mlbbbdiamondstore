@@ -1,21 +1,22 @@
 import React, { useContext } from 'react';
-import { OrderContext } from '../context/OrderContext';
+import { CartContext } from '../context/CartContext';
+import '../styles/main.css';
 
-export default function OrderSummary() {
-  const { cart } = useContext(OrderContext);
-  const total = cart.reduce((sum, item) => sum + item.price, 0);
+const OrderSummary = () => {
+  const { cartItems } = useContext(CartContext);
+
+  if (cartItems.length === 0) return null;
 
   return (
     <div className="order-summary">
-      <h3>Buyurtma tafsilotlari</h3>
-      <ul>
-        {cart.map((item, i) => (
-          <li key={i}>
-            {item.emoji} {item.name} — {item.price} so‘m
-          </li>
-        ))}
-      </ul>
-      <p><strong>Jami:</strong> {total} so‘m</p>
+      <h3>Tanlangan mahsulotlar:</h3>
+      {cartItems.map((item, index) => (
+        <div key={index} className="order-item">
+          {item.emoji} {item.name} - ${item.price.toFixed(2)}
+        </div>
+      ))}
     </div>
   );
-}
+};
+
+export default OrderSummary;
