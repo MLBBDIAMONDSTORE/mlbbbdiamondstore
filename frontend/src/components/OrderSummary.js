@@ -1,23 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { OrderContext } from '../context/OrderContext';
 import '../styles/main.css';
 
-export default function OrderSummary({ cart }) {
+export default function OrderSummary() {
+  const { cart } = useContext(OrderContext);
+
   const total = cart.reduce((sum, item) => sum + item.price, 0);
 
   return (
     <div className="order-summary">
-      <h3>Buyurtma</h3>
-      {cart.map((item, i) => (
-        <div key={i} className="order-item">
-          <span>{item.name}</span>
-          <span>${item.price.toFixed(2)}</span>
-        </div>
-      ))}
+      <h2>Tanlangan Mahsulotlar</h2>
+      {cart.length === 0 ? (
+        <p>Hech narsa tanlanmagan.</p>
+      ) : (
+        <ul>
+          {cart.map((item, i) => (
+            <li key={i}>
+              {item.name} - ${item.price.toFixed(2)}
+            </li>
+          ))}
+        </ul>
+      )}
       <hr />
-      <div className="order-total">
-        <strong>Jami:</strong>
-        <strong>${total.toFixed(2)}</strong>
-      </div>
+      <p>Jami: ${total.toFixed(2)}</p>
     </div>
   );
 }
