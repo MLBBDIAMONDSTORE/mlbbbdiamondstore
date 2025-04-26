@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-
 import Header from './components/Header';
 import ProductPage from './pages/ProductPage';
 import VerifyPage from './pages/VerifyPage';
@@ -21,22 +20,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<ProductPage />} />
           <Route path="/verify" element={<VerifyPage />} />
-          <Route
-            path="/order"
-            element={
-              <ProtectedRoute>
-                <OrderViewPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/pay"
-            element={
-              <ProtectedRoute>
-                <PayPage />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/order" element={<ProtectedRoute><OrderViewPage /></ProtectedRoute>} />
+          <Route path="/pay" element={<ProtectedRoute><PayPage /></ProtectedRoute>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
