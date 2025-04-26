@@ -4,10 +4,18 @@ import ProductCard from '../components/ProductCard';
 import '../styles/main.css';
 
 const products = [
-  { id: 1, name: '86 Diamonds', price: 1.2, emoji: '💎' },
-  { id: 2, name: '172 Diamonds', price: 2.3, emoji: '✨' },
-  { id: 3, name: '257 Diamonds', price: 3.5, emoji: '⚡' },
-  { id: 4, name: '344 Diamonds', price: 4.7, emoji: '🔥' },
+    { id: 1, name: '86 Diamonds', price: 00000, emoji: '💎' },
+  { id: 2, name: '172 Diamonds', price: 00000, emoji: '💎' },
+  { id: 3, name: '257 Diamonds', price: 00000, emoji: '💎' },
+  { id: 4, name: '706 Diamonds', price: 00000, emoji: '💎' },
+  { id: 5, name: '2195 Diamonds', price: 00000, emoji: '💎' },
+  { id: 6, name: '2398 Diamonds', price: 00000, emoji: '💎' },
+  { id: 7, name: '3688 Diamonds', price: 00000, emoji: '💎' },
+  { id: 8, name: '5532 Diamonds', price: 00000, emoji: '💎' },
+  { id: 9, name: '6042 Diamonds', price: 00000, emoji: '💎' },
+  { id: 10, name: '9288 Diamonds', price: 00000, emoji: '💎' },
+  { id: 11, name: 'Weekly Pass', price: 00000, emoji: '💎' },
+  { id: 12, name: 'Twilight Pass', price: 00000, emoji: '💎' },
 ];
 
 const ProductPage = () => {
