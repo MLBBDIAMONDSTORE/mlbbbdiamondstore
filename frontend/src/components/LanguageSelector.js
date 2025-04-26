@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/main.css';
 
-const langs = [
-  { code: 'uz', label: '🇺🇿' },
-  { code: 'ru', label: '🇷🇺' },
-  { code: 'en', label: '🇬🇧' }
-];
+const flags = {
+  UZ: '🇺🇿',
+  RU: '🇷🇺',
+  EN: '🇺🇸'
+};
 
 export default function LanguageSelector() {
-  const [lang, setLang] = useState(localStorage.getItem('lang') || 'uz');
+  const [lang, setLang] = useState(localStorage.getItem('lang') || 'UZ');
 
   useEffect(() => {
     localStorage.setItem('lang', lang);
@@ -16,13 +16,13 @@ export default function LanguageSelector() {
 
   return (
     <div className="lang-selector">
-      {langs.map(({ code, label }) => (
+      {Object.entries(flags).map(([code, flag]) => (
         <button
           key={code}
+          className={`lang-button ${lang === code ? 'active' : ''}`}
           onClick={() => setLang(code)}
-          className={lang === code ? 'active' : ''}
         >
-          {label}
+          {flag}
         </button>
       ))}
     </div>
