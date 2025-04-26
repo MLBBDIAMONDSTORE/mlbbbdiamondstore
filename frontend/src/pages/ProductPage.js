@@ -1,24 +1,19 @@
 import React from 'react';
 import { getProducts } from '../utils/api';
-import { useOrder } from '../context/OrderContext';
+import ProductCard from '../components/ProductCard';
+import '../styles/main.css';
 
 export default function ProductPage() {
-  const { addItem } = useOrder();
   const products = getProducts();
 
   return (
-    <main>
-      <h2>Choose your Diamonds</h2>
-      <div className="product-grid">
+    <div className="page product-page">
+      <h1 className="page-title">Diamond To‘plamni Tanlang</h1>
+      <div className="product-list">
         {products.map((product) => (
-          <div key={product.id} className="product-card">
-            <h3>{product.name}${product.price}</h3>
-            <button onClick={() => addItem(product)}>
-              Add 💎
-            </button>
-          </div>
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
-    </main>
+    </div>
   );
 }
