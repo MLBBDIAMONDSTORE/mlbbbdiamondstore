@@ -1,15 +1,14 @@
-export const verifyMLBBId = async (id, zone) => {
+// src/utils/api.js
+
+export async function verifyNickname(mlbbId, mlbbZone) {
   try {
-    const response = await fetch(`https://api.isan.eu.org/nickname/ml?id=${id}&zone=${zone}`);
+    const response = await fetch(`https://api.isan.eu.org/nickname/ml?id=${mlbbId}&zone=${mlbbZone}`);
     if (!response.ok) {
-      throw new Error('Tarmoqqa ulanishda xatolik');
+      throw new Error('Failed to fetch nickname');
     }
     const data = await response.json();
-    if (data.error) {
-      throw new Error('ID yoki Zone noto‘g‘ri');
-    }
     return data;
   } catch (error) {
     throw error;
   }
-};
+}
