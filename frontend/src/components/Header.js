@@ -1,17 +1,15 @@
-import React, { useContext } from 'react';
-import { OrderContext } from '../context/OrderContext';
-import LanguageSelector from './LanguageSelector';
-
+import React from 'react';
+import { useOrder } from '../context/OrderContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
-  const { user } = useContext(OrderContext);
+  const { user } = useOrder();
+  const navigate = useNavigate();
+
   return (
     <header className="header">
-      <h1>MLBB Diamond Store</h1>
-      <div className="header-right">
-        {user && <span className="nickname">{user.nickname}</span>}
-        <LanguageSelector />
-      </div>
+      <h1 onClick={() => navigate('/')}>MLBB Diamond Store</h1>
+      <div className="nickname">{user?.nickname || ''}</div>
     </header>
   );
 }
