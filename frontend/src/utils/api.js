@@ -1,10 +1,14 @@
+// MLBB ID + Zone tekshiruvi
 export async function validateMLBB(gameId, zoneId) {
-  const res = await fetch(`https://api.isan.eu.org/nickname/ml?id=${gameId}&zone=${zoneId}`);
+  const res = await fetch(
+    `https://api.isan.eu.org/nickname/ml?id=${gameId}&zone=${zoneId}`
+  );
   if (!res.ok) throw new Error('Invalid credentials');
   const data = await res.json();
-  return data.nickname;
+  return data.nickname; // Masalan: { nickname: "CodashopKing" }
 }
 
+// Statik mahsulotlar ro'yxati
 export function getProducts() {
   return [
     { id: '56', name: '56 Diamonds', price: 0.81 },
