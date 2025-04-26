@@ -1,19 +1,25 @@
-import React from 'react';
-import { getProducts } from '../utils/api';
+import React, { useContext } from 'react';
 import ProductCard from '../components/ProductCard';
-import '../styles/main.css';
+import { OrderContext } from '../context/OrderContext';
+import { getProducts } from '../utils/api';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProductPage() {
   const products = getProducts();
+  const { addToCart } = useContext(OrderContext);
+  const navigate = useNavigate();
 
   return (
     <div className="page product-page">
-      <h1 className="page-title">Diamond To‘plamni Tanlang</h1>
-      <div className="product-list">
+      <h2>Diamondlar</h2>
+      <div className="product-grid">
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product.id} product={product} onAdd={addToCart} />
         ))}
       </div>
+      <button className="next-btn" onClick={() => navigate('/verify')}>
+        View Order
+      </button>
     </div>
   );
 }
