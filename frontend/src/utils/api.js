@@ -1,12 +1,13 @@
+// src/utils/api.js
+
 // MLBB ID + Zone tekshiruvi uchun
-export async function validateMLBB(gameId, zoneId) {
-  // Codashop uslubida API chaqiriq:
+export async function verifyMLBB(gameId, zoneId) {
   const res = await fetch(
     `https://api.isan.eu.org/nickname/ml?id=${gameId}&zone=${zoneId}`
   );
   if (!res.ok) throw new Error('Invalid credentials');
   const data = await res.json();
-  return data.nickname; // { nickname: "CodashopKing" }
+  return data.nickname;
 }
 
 // Mahsulotlar ro'yxati (static)
