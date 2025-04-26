@@ -1,52 +1,51 @@
-import React, { useState, useContext } from 'react';
-import { validateMLBB } from '../utils/api';
+import React, { useContext, useState } from 'react';
 import { OrderContext } from '../context/OrderContext';
-import '../styles/main.css';
+import { validateMLBB } from '../utils/api';
+import { useNavigate } from 'react-router-dom';
 
 export default function VerifyPage() {
-  const { setUser } = useContext(OrderContext);
-  const [gameId, setGameId] = useState('');
-  const [zoneId, setZoneId] = useState('');
-  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const { setGameId, setZoneId, setNickname } = useContext(OrderContext);
+  const [gameId, setLocalGameId] = useState('');
+  const [zoneId, setLocalZoneId] = useState('');
+  const navigate = useNavigate();
 
-  const handleVerify = async () => {
-    if (!gameId || !zoneId) {
-      setError('Iltimos, ID va ZONE ni to‘ldiring');
-      return;
-    }
-    setLoading(true);
-    setError('');
+  const handleCheck = async () => {
     try {
-      const nickname = await validateMLBB(gameId, zoneId);
-      setUser({ gameId, zoneId, nickname });
-    } catch (err) {
-      setError('ID yoki ZONE xato!');
+      setLoading(true);
+      setError('');
+      const name = await validateMLBB(gameId, zoneId);
+      setNickname(name);
+      setGameId(gameId);
+      setZoneId(zoneId);
+      navigate('/order');
+    } catch {
+      setError('Noto‘g‘ri ID yoki Zone');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
     <div className="page verify-page">
-      <h1 className="page-title">MLBB ID Tekshiruvi</h1>
-      <div className="verify-form">
-        <input
-          type="text"
-          placeholder="Game ID"
-          value={gameId}
-          onChange={(e) => setGameId(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Zone ID"
-          value={zoneId}
-          onChange={(e) => setZoneId(e.target.value)}
-        />
-        <button onClick={handleVerify} disabled={loading}>
-          {loading ? 'Tekshirilmoqda...' : 'Tekshirish'}
-        </button>
-        {error && <p className="error-text">{error}</p>}
-      </div>
+      <h2>Tekshirish</h2>
+      <input
+        type="text"
+        placeholder="Game ID"
+        value={gameId}
+        onChange={(e) => setLocalGameId(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Zone ID"
+        value={zoneId}
+        onChange={(e) => setLocalZoneId(e.target.value)}
+      />
+      <button onClick={handleCheck} disabled={loading}>
+        {loading ? 'Tekshirilmoqda...' : 'Tekshir'}
+      </button>
+      {error && <p className="error">{error}</p>}
     </div>
   );
 }
