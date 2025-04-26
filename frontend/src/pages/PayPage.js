@@ -1,10 +1,15 @@
 import React from 'react';
+import '../styles/main.css';
 
-export default function PayPage() {
+const PayPage = () => {
   return (
-    <div className="page pay-page">
-      <h2>To‘lov sahifasi</h2>
-      <p>To‘lov interfeysi bu yerda bo‘ladi.</p>
+    <div className="page-container">
+      <h2 className="page-title">To‘lov sahifasi</h2>
+      <p className="payment-info">
+        To‘lov uchun malumotlar va payment gateway integratsiyasi bu yerga joylanadi.
+      </p>
     </div>
   );
-}
+};
+
+export default PayPage;
