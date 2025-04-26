@@ -1,21 +1,24 @@
 import React, { useContext } from 'react';
-import { OrderContext } from '../context/OrderContext';
+import { CartContext } from '../context/CartContext';
 import LanguageSelector from './LanguageSelector';
+import '../styles/main.css';
 import logo from '../assets/logo.png';
 
-export default function Header() {
-  const { nickname } = useContext(OrderContext);
+const Header = () => {
+  const { nickname } = useContext(CartContext);
 
   return (
     <header className="header">
-      <div className="left">
+      <div className="header-left">
         <img src={logo} alt="Logo" className="logo" />
-        <span className="site-title">MLBB Diamond Store</span>
+        <h1 className="site-title">MLBB Diamond Store</h1>
       </div>
-      <div className="right">
+      <div className="header-right">
         {nickname && <span className="nickname">{nickname}</span>}
         <LanguageSelector />
       </div>
     </header>
   );
-}
+};
+
+export default Header;
