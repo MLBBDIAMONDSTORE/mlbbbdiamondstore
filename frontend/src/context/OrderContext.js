@@ -1,7 +1,7 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
 
-export const OrderContext = createContext();
+const OrderContext = createContext();
 
 export function OrderProvider({ children }) {
   const [cart, setCart] = useLocalStorage('cart', []);
@@ -19,18 +19,22 @@ export function OrderProvider({ children }) {
     });
   };
 
-  const removeItem = (id) => {
+  const removeItem = (productId) => {
     setCart((prev) =>
-      prev.map((p) =>
-        p.id === id ? { ...p, quantity: p.quantity - 1 } : p
-      ).filter((p) => p.quantity > 0)
+      prev
+        .map((p) =>
+          p.id === productId ? { ...p, quantity: p.quantity - 1 } : p
+        )
+        .filter((p) => p.quantity > 0)
     );
   };
 
   const clearCart = () => setCart([]);
 
   return (
-    <OrderContext.Provider value={{ cart, addItem, removeItem, clearCart, user, setUser }}>
+    <OrderContext.Provider
+      value={{ cart, addItem, removeItem, clearCart, user, setUser }}
+    >
       {children}
     </OrderContext.Provider>
   );
