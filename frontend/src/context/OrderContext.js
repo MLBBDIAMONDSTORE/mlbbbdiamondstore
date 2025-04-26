@@ -1,28 +1,42 @@
+// src/context/OrderContext.js
 import React, { createContext, useState } from 'react';
 
 export const CartContext = createContext();
 
-export const CartProvider = ({ children }) => {
-  const [nickname, setNickname] = useState('');
+export const OrderProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
+  const [nickname, setNickname] = useState('');
+  const [userInfo, setUserInfo] = useState({
+    id: '',
+    zone: '',
+  });
 
   const addToCart = (product) => {
     setCartItems((prevItems) => [...prevItems, product]);
   };
 
-  const resetCart = () => {
+  const clearCart = () => {
     setCartItems([]);
-    setNickname('');
+  };
+
+  const setUserDetails = (id, zone) => {
+    setUserInfo({ id, zone });
+  };
+
+  const setUserNickname = (name) => {
+    setNickname(name);
   };
 
   return (
     <CartContext.Provider
       value={{
-        nickname,
-        setNickname,
         cartItems,
         addToCart,
-        resetCart,
+        clearCart,
+        userInfo,
+        setUserDetails,
+        nickname,
+        setUserNickname,
       }}
     >
       {children}
