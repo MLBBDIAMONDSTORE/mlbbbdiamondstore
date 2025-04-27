@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
-import { LanguageContext } from '../contexts/LanguageContext';
+import { LanguageContext } from '../context/LanguageContext';
 import '../styles/ProductCard.css';
 
 const ProductCard = ({ product }) => {
   const [quantity, setQuantity] = useState(0);
-  const { language, translations } = useContext(LanguageContext);
+  const { texts } = useContext(LanguageContext); // Faqat texts olinadi
 
   const handleAdd = () => {
     setQuantity(1);
@@ -28,7 +28,7 @@ const ProductCard = ({ product }) => {
 
       {quantity === 0 ? (
         <button className="add-button" onClick={handleAdd}>
-          {translations[language]?.buyNow}
+          {texts.buyNow}
         </button>
       ) : (
         <div className="quantity-controls">
