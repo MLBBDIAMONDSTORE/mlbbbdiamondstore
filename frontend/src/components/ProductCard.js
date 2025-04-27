@@ -1,51 +1,45 @@
-import React, { useContext, useState } from 'react';
-import { OrderContext } from '../contexts/OrderContext';
-import { LanguageContext } from '../contexts/LanguageContext';
-import { formatPrice } from '../utils/formatPrice';
-import '../styles/ProductCard.css';
+import React from 'react';
+import CartButton from './CartButton';
 
-const ProductCard = ({ product }) => {
-  const { addToCart, removeFromCart, getQuantity } = useContext(OrderContext);
-  const { language } = useContext(LanguageContext);
-  const quantity = getQuantity(product.id);
-  const [animate, setAnimate] = useState(false);
-
-  const handleAdd = () => {
-    addToCart(product);
-    triggerAnimation();
-  };
-
-  const handleRemove = () => {
-    removeFromCart(product);
-    triggerAnimation();
-  };
-
-  const triggerAnimation = () => {
-    setAnimate(true);
-    setTimeout(() => setAnimate(false), 300);
-  };
-
+const ProductCard = ({ product, quantity, onAdd, onRemove }) => {
   return (
-    <div className="product-card">
-      <div className={`product-emoji ${animate ? 'wiggle' : ''}`}>
-        {product.emoji}
-      </div>
-      <div className="product-name">
-        {product.name[language]} · {formatPrice(product.price, language)}
-      </div>
-      {quantity === 0 ? (
-        <button className="add-btn" onClick={handleAdd}>
-          ADD
-        </button>
-      ) : (
-        <div className="counter">
-          <button className="counter-btn" onClick={handleRemove}>-</button>
-          <span className="quantity-badge">{quantity}</span>
-          <button className="counter-btn" onClick={handleAdd}>+</button>
-        </div>
-      )}
+    <div style={styles.card}>
+      <div style={styles.emoji}>{product.emoji}</div>
+      <div style={styles.name}>{product.name}</div>
+      <div style={styles.price}>{product.price.toLocaleString()} UZS</div>
+      <CartButton quantity={quantity} onAdd={onAdd} onRemove={onRemove} />
     </div>
   );
+};
+
+const styles = {
+  card: {
+    width: '120px',
+    padding: '15px',
+    margin: '10px',
+    borderRadius: '15px',
+    backgroundColor: '#fff',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+  },
+  emoji: {
+    fontSize: '40px',
+    marginBottom: '10px',
+  },
+  name: {
+    fontWeight: 'bold',
+    fontSize: '16px',
+    marginBottom: '5px',
+    textAlign: 'center',
+  },
+  price: {
+    fontSize: '14px',
+    color: '#555',
+    marginBottom: '10px',
+    textAlign: 'center',
+  },
 };
 
 export default ProductCard;
