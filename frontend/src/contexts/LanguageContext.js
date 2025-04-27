@@ -6,9 +6,9 @@ const translations = {
   uz: {
     buyNow: 'Xarid qilish',
     confirmOrder: 'Buyurtmani tasdiqlash',
-    pay: 'To‘lash',
+    pay: 'To\'lash',
     nickname: 'Taxallus',
-    playerId: 'O‘yinchi ID',
+    playerId: 'O\'yinchi ID',
   },
   ru: {
     buyNow: 'Купить',
@@ -41,7 +41,7 @@ export const LanguageProvider = ({ children }) => {
     localStorage.setItem('language', lang);
   };
 
-  const texts = translations[language]; // !!! faqat kerakli tilni olamiz
+  const texts = translations[language]; // kerakli tilni olamiz
 
   return (
     <LanguageContext.Provider value={{ language, changeLanguage, texts }}>
