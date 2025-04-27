@@ -1,28 +1,17 @@
-import React, { useContext } from 'react';
-import Header from '../components/Header';
-import ProductList from '../components/ProductList';
-import { OrderContext } from '../contexts/OrderContext';
-import { LanguageContext } from '../contexts/LanguageContext';
-import { products } from '../data/products';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import ProductCard from '../components/ProductCard';
 import '../styles/ProductPage.css';
+import { products } from '../utils/products';
 
 const ProductPage = () => {
-  const { cart } = useContext(OrderContext);
-  const { language } = useContext(LanguageContext);
-  const navigate = useNavigate();
-  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-
   return (
     <div className="product-page">
-      <Header />
-      <div className="cart-counter">
-        🛒 {totalItems}
+      <h1 className="title">Select Your Diamonds</h1>
+      <div className="product-grid">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
       </div>
-      <ProductList products={products} />
-      <button className="view-order-btn" onClick={() => navigate('/order')}>
-        {language === 'uz' ? 'Buyurtmani ko‘rish' : language === 'ru' ? 'Просмотр заказа' : 'View Order'}
-      </button>
     </div>
   );
 };
