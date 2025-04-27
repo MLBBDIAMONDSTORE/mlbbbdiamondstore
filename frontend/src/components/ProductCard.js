@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { LanguageContext } from '../context/LanguageContext';
+import { LanguageContext } from './context/LanguageContext';
 import '../styles/ProductCard.css';
 
 const ProductCard = ({ product }) => {
