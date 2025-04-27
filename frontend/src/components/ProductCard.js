@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { LanguageContext } from '../contexts/LanguageContext';
 import '../styles/ProductCard.css';
 
@@ -25,6 +25,7 @@ const ProductCard = ({ product }) => {
         <div className="product-name">{product.name}</div>
         <div className="product-price">{product.price} so'm</div>
       </div>
+
       {quantity === 0 ? (
         <button className="add-button" onClick={handleAdd}>
           {translations[language]?.buyNow}
