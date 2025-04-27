@@ -5,7 +5,7 @@ import { OrderContext } from '../contexts/OrderContext';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { products } from '../data/products';
 import { useNavigate } from 'react-router-dom';
-import '../styles/main.css';
+import '../styles/ProductPage.css';
 
 const ProductPage = () => {
   const { cart } = useContext(OrderContext);

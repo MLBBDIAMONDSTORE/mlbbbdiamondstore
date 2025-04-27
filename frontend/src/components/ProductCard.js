@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { OrderContext } from '../contexts/OrderContext';
 import { LanguageContext } from '../contexts/LanguageContext';
 import { formatPrice } from '../utils/formatPrice';
-import '../styles/main.css';
+import '../styles/ProductCard.css';
 
 const ProductCard = ({ product }) => {
   const { addToCart, removeFromCart, getQuantity } = useContext(OrderContext);
