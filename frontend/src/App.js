@@ -4,7 +4,7 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { OrderProvider } from './contexts/OrderContext';
 import ProductPage from './pages/ProductPage';
-import OrderPage from './pages/OrderPage'; // Hozircha bo'sh sahifa
+import OrderPage from './pages/OrderPage'; 
 
 function App() {
   return (
