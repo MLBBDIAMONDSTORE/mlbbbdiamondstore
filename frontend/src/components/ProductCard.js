@@ -1,40 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../styles/ProductCard.css';
+import formatPrice from '../utils/formatPrice';
 
-const ProductCard = ({ product }) => {
-  const [quantity, setQuantity] = useState(0);
-
-  const handleAdd = () => {
-    setQuantity(1);
-  };
-
-  const handleIncrement = () => {
-    setQuantity(prev => prev + 1);
-  };
-
-  const handleDecrement = () => {
-    setQuantity(prev => (prev > 0 ? prev - 1 : 0));
-  };
-
+const ProductCard = ({ product, onAdd }) => {
   return (
     <div className="product-card">
       <div className="emoji">{product.emoji}</div>
-      <div className="product-info">
-        <div className="product-name">{product.name}</div>
-        <div className="product-price">{product.price} so'm</div>
-      </div>
-
-      {quantity === 0 ? (
-        <button className="add-button" onClick={handleAdd}>
-          Buy Now
-        </button>
-      ) : (
-        <div className="quantity-controls">
-          <button className="quantity-btn" onClick={handleDecrement}>-</button>
-          <span className="quantity">{quantity}</span>
-          <button className="quantity-btn" onClick={handleIncrement}>+</button>
-        </div>
-      )}
+      <h3>{product.name}</h3>
+      <p>{formatPrice(product.price)} so'm</p>
+      <button onClick={() => onAdd(product)}>Sotib olish</button>
     </div>
   );
 };
