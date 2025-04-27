@@ -1,6 +1,5 @@
-// src/components/ProductCard.js
 import React, { useState, useContext } from 'react';
-import { LanguageContext } from '../contexts/LanguageContext';
+import { LanguageContext } from '../context/LanguageContext';
 import '../styles/ProductCard.css';
 
 const ProductCard = ({ product }) => {
@@ -28,7 +27,7 @@ const ProductCard = ({ product }) => {
       </div>
       {quantity === 0 ? (
         <button className="add-button" onClick={handleAdd}>
-          {translations[language].buyNow}
+          {translations[language]?.buyNow}
         </button>
       ) : (
         <div className="quantity-controls">
