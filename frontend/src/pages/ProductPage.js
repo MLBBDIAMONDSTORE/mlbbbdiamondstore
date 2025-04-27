@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductCard from '../components/ProductCard';
 import '../styles/ProductPage.css';
-import { products } from '../utils/products';
+import { products } from '../data/products';
 
 const ProductPage = () => {
   return (
