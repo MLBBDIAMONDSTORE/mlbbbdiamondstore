@@ -1,4 +1,3 @@
-// src/contexts/LanguageContext.js
 import React, { createContext, useState, useEffect } from 'react';
 
 export const LanguageContext = createContext();
@@ -7,9 +6,9 @@ const translations = {
   uz: {
     buyNow: 'Xarid qilish',
     confirmOrder: 'Buyurtmani tasdiqlash',
-    pay: 'Toʻlash',
+    pay: 'To‘lash',
     nickname: 'Taxallus',
-    playerId: 'Oʻyinchi ID',
+    playerId: 'O‘yinchi ID',
   },
   ru: {
     buyNow: 'Купить',
@@ -42,8 +41,10 @@ export const LanguageProvider = ({ children }) => {
     localStorage.setItem('language', lang);
   };
 
+  const texts = translations[language]; // !!! faqat kerakli tilni olamiz
+
   return (
-    <LanguageContext.Provider value={{ language, changeLanguage, translations }}>
+    <LanguageContext.Provider value={{ language, changeLanguage, texts }}>
       {children}
     </LanguageContext.Provider>
   );
