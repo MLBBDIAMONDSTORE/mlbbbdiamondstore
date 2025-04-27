@@ -1,5 +1,18 @@
 .product-page {
-    background-color: var(--bg-color);
-    min-height: 100vh;
-    color: var(--text-color);
-  }
+  background-color: #0d0d0d;
+  min-height: 100vh;
+  padding: 30px 20px;
+}
+
+.title {
+  color: #f5c518;
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
