@@ -1,6 +1,13 @@
 import React, { createContext, useState } from 'react';
 
+// Shu yerdan import qilamiz
+import uz from '../translations/uz';
+import ru from '../translations/ru';
+import en from '../translations/en';
+
 export const LanguageContext = createContext();
+
+const translations = { uz, ru, en };
 
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState('uz');
@@ -10,7 +17,7 @@ export const LanguageProvider = ({ children }) => {
   };
 
   return (
-    <LanguageContext.Provider value={{ language, changeLanguage }}>
+    <LanguageContext.Provider value={{ language, changeLanguage, translations }}>
       {children}
     </LanguageContext.Provider>
   );
