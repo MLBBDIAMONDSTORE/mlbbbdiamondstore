@@ -1,18 +1,15 @@
 .product-page {
-  background-color: #0d0d0d;
-  min-height: 100vh;
-  padding: 30px 20px;
-}
-
-.title {
-  color: #f5c518;
+  padding: 20px;
   text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 30px;
 }
 
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
+.cart-summary {
+  margin-top: 20px;
+  background: #1f1f1f;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
 }
