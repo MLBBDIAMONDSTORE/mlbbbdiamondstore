@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ProductList from '../components/ProductList';
 import products from '../data/products';
+import formatPrice from '../utils/formatPrice'; // ✅ to‘g‘ri default import
 import '../styles/OrderPage.css';
 
 const OrderPage = () => {
@@ -18,7 +19,9 @@ const OrderPage = () => {
         <h2>Savat:</h2>
         <ul>
           {cart.map((item, index) => (
-            <li key={index}>{item.name} - {item.price} so'm</li>
+            <li key={index}>
+              {item.name} - {formatPrice(item.price)}
+            </li>
           ))}
         </ul>
       </div>
