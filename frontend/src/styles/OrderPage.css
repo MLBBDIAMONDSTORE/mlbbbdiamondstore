@@ -1,1 +1,32 @@
+.order-page {
+  padding: 20px;
+  text-align: center;
+  color: white;
+  background-color: #121212;
+  min-height: 100vh;
+}
 
+.cart-summary {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #1f1f1f;
+  border-radius: 8px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.cart-summary h2 {
+  margin-bottom: 15px;
+}
+
+.cart-summary ul {
+  list-style: none;
+  padding: 0;
+}
+
+.cart-summary li {
+  padding: 5px 0;
+  border-bottom: 1px solid #333;
+}
