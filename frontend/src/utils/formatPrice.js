@@ -1,3 +1,5 @@
-export const formatPrice = (price) => {
-  return price.toLocaleString('uz-UZ') + ' so\'m';
+const formatPrice = (price) => {
+  return price.toLocaleString('uz-UZ') + " so'm";
 };
+
+export default formatPrice;
